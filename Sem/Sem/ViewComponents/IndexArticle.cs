@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Sem
 {
-	public class IndexArticleViewComponent:ViewComponent
+	public class IndexArticle:ViewComponent
 	{
-		public IndexArticleViewComponent()
+		public IndexArticle()
 		{
 			
 		}

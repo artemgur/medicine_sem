@@ -1,0 +1,19 @@
+﻿@page
+@model Sem.Pages.ForumIndex
+
+@{
+    Layout = "Shared/_Layout";
+}
+
+<button class="btn btn-primary">Создать</button>
+
+<div class="container-fluid">
+    <div class="row">
+        @await Component.InvokeAsync("IndexForum")
+        @await Component.InvokeAsync("IndexForum")
+        @await Component.InvokeAsync("IndexForum")
+        @await Component.InvokeAsync("IndexForum")
+        @await Component.InvokeAsync("IndexForum")
+        @await Component.InvokeAsync("IndexForum")
+    </div>
+</div>
