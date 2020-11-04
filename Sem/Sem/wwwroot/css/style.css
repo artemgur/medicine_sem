@@ -7,6 +7,7 @@
 .color_text:hover{
     color: white;
 }
+/*Multiple selection dropdown*/
 .bootstrap-select .bs-ok-default::after {
     width: 0.3em;
     height: 0.6em;
@@ -17,3 +18,14 @@
 .btn.dropdown-toggle:focus {
     outline: none !important;
 }
+/*Card*/
+.my_card{
+    margin: 50px;
+}
+.my_card:hover{
+    background-color: #999696;
+}
+/*
+.margin_0{
+    margin: 0;
+}*/
