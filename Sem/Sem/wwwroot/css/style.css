@@ -29,3 +29,17 @@
 .margin_0{
     margin: 0;
 }*/
+
+.registration_form{
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.registration_child{
+    margin: 10px auto;
+    width: 40%;
+}
