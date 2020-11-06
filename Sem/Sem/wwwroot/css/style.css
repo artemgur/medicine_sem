@@ -43,3 +43,17 @@
     margin: 10px auto;
     width: 40%;
 }
+
+.article_parent{
+    width: 90%;
+    margin: 10px auto 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#create_forum_item_button{
+    display: block;
+    margin: 10px auto;
+}
