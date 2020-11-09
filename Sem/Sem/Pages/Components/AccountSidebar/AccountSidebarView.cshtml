@@ -1,0 +1,10 @@
+﻿@model object
+
+<div class="account_sidebar_background border-right" id="account_sidebar">
+    @* <div id="sidebar_heading">Start Bootstrap </div> *@
+    <div class="list-group list-group-flush">
+        <a href="@Url.Page("./Account")" class="list-group-item list-group-item-action account_sidebar_background">Настройки</a>
+        <a href="@Url.Page("./AccountArticles")" class="list-group-item list-group-item-action account_sidebar_background">Избранные статьи</a>
+        <a href="@Url.Page("./AccountForum")" class="list-group-item list-group-item-action account_sidebar_background">Форум</a>
+    </div>
+</div>

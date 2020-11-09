@@ -1,4 +1,8 @@
-﻿.color_primary{
+﻿:root{
+    --sidebar_width: 200px;
+}
+
+.color_primary{
     background-color: #93d4ff;
 }
 .color_text{
@@ -56,4 +60,26 @@
 #create_forum_item_button{
     display: block;
     margin: 10px auto;
+}
+
+#account_sidebar{
+    float: left;
+    width: var(--sidebar_width);
+    height: 100%;
+}
+
+.account_sidebar_background{
+    background-color: #93d4ff;
+}
+
+.account_main_div{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.div_no_sidebar_space{
+    float: left;
+    height: 100%;
+    width: calc(100% - var(--sidebar_width));
 }

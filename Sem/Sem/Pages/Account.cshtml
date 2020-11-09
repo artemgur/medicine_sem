@@ -2,16 +2,16 @@
 @{
     Layout = "Shared/_Layout";
 }
+<div class="account_main_div">
+    @await Component.InvokeAsync("AccountSidebar")
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<div>
-    
+    <div class="div_no_sidebar_space">
+        <form class="form-group registration_form">
+            <input class="form-control registration_child" id="old_password" type="password" placeholder="Пароль">
+            <input class="form-control registration_child" id="login" type="text" placeholder="Новый логин">
+            <input class="form-control registration_child" id="new_password" type="password" placeholder="Новый пароль">
+            <input class="form-control registration_child" id="confirm_password" type="password" placeholder="Повторите новый пароль"> @*TODO password peek?*@
+            <button class="btn btn-success registration_child" type="submit">Изменить</button>
+        </form>
+    </div>
 </div>
-</body>
-</html>
