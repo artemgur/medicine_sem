@@ -3,15 +3,47 @@
     Layout = "Shared/_Layout";
 }
 
-<!DOCTYPE html>
+<div class="container-fluid">
 
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<div>
-    
+    <div class="forum-box">
+        <div class="forum">
+            <h2 class="forum-title">Заголовок</h2>
+            <div class="forum_description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero perferendis reprehenderit dolor libero quo itaque repellendus. Voluptas, facere in id tenetur, amet cupiditate voluptates tempora inventore sunt nesciunt consectetur beatae.</div>
+            @* <div class="col-md-1 offset-md-11 forum-peoples"> *@
+            @*     <img class="forum-peoples-svg" src="icons/people.svg" alt=""> *@
+            @*     <div class="forum-peoples-count">0</div> *@
+            @* </div> *@
+            <hr>
+            <div class="chat-box">
+                <div class="chat">
+
+                    <div class="chat-container-box">
+                        <div id="chat-red" class="chat-container">
+
+                            <div class="messages_from_user">
+                                <img class="message-img" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="">
+                                <div class="message-place">
+                                    <div class="message-box">
+                                        <div class="message">Hi</div>
+                                    </div>
+                                    <div class="message-box">
+                                        <div class="message">How are you ...???</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="publisher">
+                    <form class="chat-form" action="" onsubmit="return false;">
+                        <input id="chatInput" type="text" placeholder="Type a message..." autocomplete="off">
+                        <button @*onclick="chatSendMessage()"*@ id="send-btn" class="btn btn-secondary" type="submit">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
-</body>
-</html>

@@ -88,3 +88,156 @@
     margin: 60px auto;
     width: 40%;
 }
+
+
+
+
+
+
+
+
+
+.forum-box{
+    margin-bottom: 10px;
+}
+.forum{
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.forum-title{
+    text-align: center;
+}
+.forum_description{
+    text-indent: 2em;
+}
+.one-debate-peoples{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+}
+
+.one-debate-peoples-svg{
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+
+
+
+
+.chat-box{
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat{
+    height: 100%;
+    max-height: calc(100% - 50px);
+    display: flex;
+    flex-direction: row;
+}
+.chat-container-box{
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+}
+.chat-container{
+    height: 100%;
+    max-height: 540px;
+    background-color: #f1f0f0;
+    border-radius: 8px;
+    padding: 10px;
+
+    overflow-y: auto;
+
+}
+
+
+
+
+
+
+
+
+.messages_from_user{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.message-img{
+    width: 36px;
+    height: 36px;
+}
+.message-place{
+    display: flex;
+    flex-direction: column;
+    max-width: 50%;
+}
+.message-box{
+    display: flex;
+}
+.message{
+    padding: 5px 10px;
+    margin-bottom: 10px;
+}
+
+.message-box{
+    flex-direction: row;
+}
+
+
+
+.message{
+    background-color: #ccdefc;
+    /*border-radius: 18px;*/
+}
+
+
+
+
+
+.publisher{
+    height: 50px;
+    background-color: white;
+    /*margin: 5px;*/
+    padding: 10px;
+}
+
+.chat-form{
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 10px;
+}
+.chat-form input{
+    width: 100%;
+    height: 38px;
+
+    margin: 0 10px;
+    padding: 0 10px;
+    /*border-radius: 20px;*/
+
+    outline: none;
+    border: 0;
+    /*border: solid 1px gray;*/
+    border-bottom: solid 1px gray;
+
+    /*background-color: #fff;*/
+}
+
+
+#send-btn{
+    /*border-radius: 0 20px 20px 0;*/
+
+}

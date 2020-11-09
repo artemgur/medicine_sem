@@ -5,3 +5,4 @@ function openArticle(){
 function openForum(){
     document.location.href = "Forum"
 }
+
