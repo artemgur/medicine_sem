@@ -17,23 +17,25 @@
     <script type="text/javascript" src="js/scripts.js"></script>
 </head>
 <body>
-<nav class="navbar color_primary">
+<nav class="navbar color_primary shadow_my">
     <div>
         <a class="navbar-brand float-left" href="@Url.Page("./Index")">Медицина</a>@*TODO proper name*@
         <a class="nav-link color_text float-left" href="@Url.Page("./Index")">Статьи</a>
         <a class="nav-link color_text float-left" href="@Url.Page("./ForumIndex")">Форум</a>
     </div>
-    <form class="form-inline float-left">
-        <input class="form-control mr-sm-2" type="text" placeholder="Поиск">
-        <button class="btn btn-success" type="submit">Search</button>
+    <form id="search_form" class="form-inline">
+        <input id="search_input" class="form-control mr-sm-2" type="text" placeholder="Поиск">
+        <button id="search_button" class="btn btn-success" type="submit">Поиск</button>
+        <select id="tags_select" class="selectpicker" multiple data-live-search="true"  title="Теги" style="margin-left: 10px">
+            <option>Грипп</option>
+            <option>ОРВИ</option>
+            <option>Коронавирус</option>
+        </select>
     </form>
-    <select class="selectpicker float-left" multiple data-live-search="true"  title="Теги" style="margin-left: 10px">
-        <option>Грипп</option>
-        <option>ОРВИ</option>
-        <option>Коронавирус</option>
-    </select>
-    <a class="nav-link color_text float-left" href="@Url.Page("./Register")">Регистрация</a>
-    <a class="nav-link color_text float-left" href="@Url.Page("./Account")">Личный кабинет</a>
+    <div>
+        <a class="nav-link color_text float-left" href="@Url.Page("./Register")">Регистрация</a>
+        <a class="nav-link color_text float-left" href="@Url.Page("./Account")">Личный кабинет</a>
+    </div>
 </nav>
 
 @RenderBody()

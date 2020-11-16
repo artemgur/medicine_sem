@@ -2,6 +2,11 @@
     --sidebar_width: 200px;
 }
 
+html, body{
+    width: 100%;
+    height: auto;
+}
+
 .color_primary{
     background-color: #93d4ff;
 }
@@ -25,7 +30,14 @@
 /*Card*/
 .my_card{
     margin: 50px;
+    border-radius: 20px;
 }
+
+.my_card img{
+    border-radius: 20px 20px 0 0;
+    object-fit: contain;
+}
+
 .my_card:hover{
     background-color: #999696;
 }
@@ -66,6 +78,7 @@
     float: left;
     width: var(--sidebar_width);
     height: 100%;
+    box-shadow: 10px 0 10px -10px rgba(0,0,0,0.2);
 }
 
 .account_sidebar_background{
@@ -87,6 +100,33 @@
 #image_picker_parent{
     margin: 60px auto;
     width: 40%;
+}
+
+#search_form{
+    display: block;
+}
+
+#search_button{
+    display: inline-block;
+    margin-left: 0;
+    margin-right: 30px;
+}
+
+#search_input{
+    display: inline-block;
+    margin-right: 0;
+}
+
+#tags_select{
+    display: inline-block;
+}
+
+.shadow_my{
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.minor_shadow, .registration_form input, .registration_form button{
+    box-shadow: 0 0 7px rgba(0,0,0,0.1);
 }
 
 
