@@ -7,5 +7,5 @@ function openForum(){
 }
 
 function starOnClick(){
-    $(".star.glyphicon").toggleClass("glyphicon-star glyphicon-star-empty")
+    
 }
