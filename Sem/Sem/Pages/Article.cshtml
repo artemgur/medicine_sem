@@ -1,12 +1,15 @@
-﻿@page
-@model Sem.Pages.Article
+﻿@page "{articleId?}"
+@model Article
 
 @{
     Layout = "Shared/_Layout";
 }
 
 <div class="article_parent">
-    <h1>A title</h1>
-    <img src="img/placeholder.jpg" alt="article_image">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <h1 name="article_title">@Model.ArticlePars[0]</h1>
+    <img src="img/placeholder.jpg" alt="article_image"> @*@Model.ArticlePars[1]*@
+    <p></p>
 </div>
+<form class="form-group registration_form" method="post">
+    <button class="btn btn-success registration_child" type="submit" asp-page-handler="Add">Добавить</button>
+</form>

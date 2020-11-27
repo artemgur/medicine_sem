@@ -1,11 +1,13 @@
-﻿@model object
+﻿@model List<object>
 
 <div class="col-md-4">
-    <div class="card my_card shadow_my" onclick="openForum()">
-        <h4 class="card-title">Forum Topic Title</h4>
-        <div class="card-body">
-            Some text
+    <a href="@Url.Page("./Forum", new { forumId = Model[2] })">
+        <div class="card my_card shadow_my">
+            <h4 class="card-title">@Model[0]</h4>
+            <div class="card-body">
+                @Model[1]
+            </div>
+            @* <button class="btn btn-primary">Открыть</button> *@
         </div>
-        @* <button class="btn btn-primary">Открыть</button> *@
-    </div>
+    </a>
 </div>

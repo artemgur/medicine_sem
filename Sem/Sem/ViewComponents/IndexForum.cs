@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Sem
@@ -10,9 +11,9 @@ namespace Sem
 			
 		}
 		
-		public async Task<IViewComponentResult> InvokeAsync()
+		public async Task<IViewComponentResult> InvokeAsync(List<object> forumIndex)
 		{
-			return View("IndexForumView");
+			return View("IndexForumView", forumIndex);
 		}
 	}
 }
