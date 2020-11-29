@@ -55,3 +55,13 @@ function sendMessage(message)
         }
     }
 }
+
+function emptyStarOnClick(){
+    $("#empty_star").css("display", "none");
+    $("#filled_star").css("display", "flex");
+}
+
+function filledStarOnClick(){
+    $("#empty_star").css("display", "flex");
+    $("#filled_star").css("display", "none");
+}
