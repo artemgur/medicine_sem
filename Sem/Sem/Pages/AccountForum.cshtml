@@ -1,0 +1,21 @@
+﻿@page
+@model Sem.Pages.AccountForum
+
+@{
+    Layout = "Shared/_Layout";
+}
+
+<div class="account_main_div">
+    @await Component.InvokeAsync("AccountSidebar")
+
+    <div class="div_no_sidebar_space">
+        <div class="container-fluid">
+            <div class="row">
+                @foreach (var chat in DataBase.Select("SELECT chats.* FROM chats_to_users, chats WHERE user_id = " + Request.Cookies["user_id"] + " AND chats_to_users.chat_id = chats.chat_id;"))
+                {
+                    @await Component.InvokeAsync("IndexForum", chat)
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+﻿@page
+@model IndexModel
+@* @{ *@
+@*     ViewData["Title"] = "Home page"; *@
+@* } *@
+@{
+    Layout = "Shared/_Layout";
+}
+
+@{
+    Pages.SignIn.userView = Request.Cookies["login"] != null;
+}
+
+<div class="container-fluid">
+    <div class="row">
+        @foreach (var article in Model.Articles)
+        {
+            @await Component.InvokeAsync("IndexArticle", article)
+        }
+    </div>
+</div>

@@ -1,0 +1,16 @@
+﻿@page
+@model Sem.Pages.Register
+
+@{
+    Layout = "Shared/_Layout";
+}
+
+<form class="form-group registration_form" method="post">
+    <div class="@Model.typeMessage" role="alert" hidden="@Model.hiddenBool">
+        @Model.message
+    </div>
+    <input class="form-control registration_child" name="login" type="text" placeholder="Логин">
+    <input class="form-control registration_child" name="password" type="password" placeholder="Пароль">
+    <input class="form-control registration_child" name="repeat_password" type="password" placeholder="Повторите пароль"> @*TODO password peek?*@
+    <button class="btn btn-success registration_child" type="submit">Зарегистрироваться</button>
+</form>

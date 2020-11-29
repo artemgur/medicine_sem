@@ -1,0 +1,36 @@
+﻿@page
+@model Sem.Pages.Account
+@{
+    Layout = "Shared/_Layout";
+}
+<div class="account_main_div">
+    @await Component.InvokeAsync("AccountSidebar")
+
+    <div class="div_no_sidebar_space">
+        <form class="form-group registration_form" method="post">
+            <div class="alert alert-danger" role="alert" hidden="@Model.hiddenBool">
+                You entered an incorrect password!
+            </div>
+            <h4 class="registration_child">Изменить логин или пароль</h4>
+            <input class="form-control registration_child" name="login" type="text" placeholder="Новый логин">
+            <input class="form-control registration_child" name="old_password" type="password" placeholder="Пароль">
+            <input class="form-control registration_child" name="new_password" type="password" placeholder="Новый пароль">
+            <button class="btn btn-success registration_child" type="submit" asp-page-handler="change">Изменить</button>
+        </form>
+        <div class="registration_form">
+            <h4 class="registration_child">Изменить изображение профиля</h4>
+            <div class="input-group registration_child">
+                @* <div class="input-group-prepend"> *@
+                @*   <span class="input-group-text" id="inputGroupFileAddon01">Изменить изображение профиля</span> *@
+                @* </div> *@
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input minor_shadow" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
+                </div>
+            </div>
+        </div>
+        <form class="form-group registration_form" method="post">
+            <button class="btn btn-success registration_child" type="submit" asp-page-handler="exit">Выйти</button>
+        </form>
+    </div>
+</div>

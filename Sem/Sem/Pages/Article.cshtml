@@ -1,0 +1,15 @@
+﻿@page "{articleId?}"
+@model Article
+
+@{
+    Layout = "Shared/_Layout";
+}
+
+<div class="article_parent">
+    <h1 name="article_title">@Model.ArticlePars[0]</h1>
+    <img src="img/placeholder.jpg" alt="article_image"> @*@Model.ArticlePars[1]*@
+    <p></p>
+</div>
+<form class="form-group registration_form" method="post">
+    <button class="btn btn-success registration_child" type="submit" asp-page-handler="Add">Добавить</button>
+</form>

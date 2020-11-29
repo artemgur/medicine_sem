@@ -1,0 +1,21 @@
+﻿@page
+@model Sem.Pages.AccountArticles
+
+@{
+    Layout = "Shared/_Layout";
+}
+
+<div class="account_main_div">
+    @await Component.InvokeAsync("AccountSidebar")
+
+    <div class="div_no_sidebar_space">
+        <div class="container-fluid">
+            <div class="row">
+                @foreach (var article in DataBase.Select("SELECT articles.* FROM articles_to_users, articles WHERE user_id = " + Request.Cookies["user_id"] + " AND articles_to_users.article_id = articles.article_id;"))
+                {
+                    @await Component.InvokeAsync("IndexArticle", article)
+                }
+            </div>
+        </div>
+    </div>
+</div>

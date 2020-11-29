@@ -1,0 +1,15 @@
+﻿@page
+@model Sem.Pages.SignIn
+
+@{
+    Layout = "Shared/_Layout";
+}
+
+<form class="form-group registration_form" method="post">
+    <div class="alert alert-danger" role="alert" hidden="@Model.hiddenBool">
+        You entered an incorrect password or username!
+    </div>
+    <input class="form-control registration_child" name="login" type="text" placeholder="Логин">
+    <input class="form-control registration_child" name="password" type="password" placeholder="Пароль">
+    <button class="btn btn-success registration_child" type="submit">Войти</button>
+</form>
