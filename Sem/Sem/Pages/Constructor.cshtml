@@ -1,0 +1,12 @@
+@page
+@model Sem.Pages.Constructor
+
+@{
+    Layout = "Shared/_Layout";
+}
+
+<form class="form-group registration_form">
+    <input class="form-control registration_child" name="name" type="text" placeholder="Логин">
+    <textarea class="form-control registration_child"@* rows="3"*@ placeholder="Текст"></textarea>
+    <button class="btn btn-success registration_child" type="submit">Создать</button>
+</form>

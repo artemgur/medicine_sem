@@ -6,6 +6,10 @@ function openForum(){
     document.location.href = "Forum"
 }
 
+function openConstructor(){
+    document.location.href = "Constructor"
+}
+
 function sendMessage(message)
 {
     if ("WebSocket" in window) {
