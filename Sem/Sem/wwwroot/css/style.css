@@ -31,11 +31,20 @@ html, body{
 .my_card{
     margin: 50px;
     border-radius: 20px;
+    color: black;
 }
 
 .my_card img{
     border-radius: 20px 20px 0 0;
     object-fit: contain;
+}
+
+.my_a:hover{
+    text-decoration: none !important;
+}
+
+.my_a:active{
+    text-decoration: none !important;
 }
 
 .my_card:hover{

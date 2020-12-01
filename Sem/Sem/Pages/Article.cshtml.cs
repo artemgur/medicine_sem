@@ -18,7 +18,7 @@ namespace Sem.Pages
 		public async Task<IActionResult> OnPostAsyncAdd()
 		{
 			if (DataBase.SelectCheck<int>("SELECT * FROM articles_to_users WHERE user_id = " + Request.Cookies["user_id"] + "AND article_id = " + articleId + ";").Count == 0)
-			DataBase.Add("INSERT INTO articles_to_users VALUES (" + Request.Cookies["user_id"] + ", " + articleId + "); ");
+				DataBase.Add("INSERT INTO articles_to_users VALUES (" + Request.Cookies["user_id"] + ", " + articleId + "); ");
 			return RedirectToPage("/Article");
 		}
 	}
