@@ -31,11 +31,20 @@ html, body{
 .my_card{
     margin: 50px;
     border-radius: 20px;
+    color: black;
 }
 
 .my_card img{
     border-radius: 20px 20px 0 0;
     object-fit: contain;
+}
+
+.my_a:hover{
+    text-decoration: none !important;
+}
+
+.my_a:active{
+    text-decoration: none !important;
 }
 
 .my_card:hover{
@@ -139,26 +148,23 @@ html, body{
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 #article_header{
     display: block;
 }
 
-#star{
-    display: block;
+.star{
     width: 40px;
     height: 40px;
 }
 
 #placeholder{
-    display: block;
-    /*opacity: 0;*/
-    width: 40px;
-    height: 40px;
+    opacity: 0;
+    /*width: 40px;*/
+    /*height: 40px;*/
 }
-
 
 
 

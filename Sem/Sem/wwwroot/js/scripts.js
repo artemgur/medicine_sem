@@ -6,6 +6,10 @@ function openForum(){
     document.location.href = "Forum"
 }
 
+function openConstructor(){
+    document.location.href = "Constructor"
+}
+
 function sendMessage(message)
 {
     if ("WebSocket" in window) {
@@ -54,4 +58,19 @@ function sendMessage(message)
                 ws.send(document.getElementById("messageText").value);
         }
     }
+}
+
+function emptyStarOnClick(artivleId) {
+    alert('/Article/' + artivleId);
+    $.post('https://localhost:44374/Article/' + artivleId, { handler: 'Add', id: artivleId }, function () {
+        $("#empty_star").css("display", "none");
+        $("#filled_star").css("display", "flex");
+    });
+}
+
+function filledStarOnClick(artivleId) {
+    $.post('https://localhost:44374/Article/' + artivleId, { handler: 'Remove', id: artivleId }, function () {
+        $("#empty_star").css("display", "flex");
+        $("#filled_star").css("display", "none")
+    });
 }

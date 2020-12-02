@@ -6,10 +6,16 @@
 }
 
 <div class="article_parent">
-    <h1 name="article_title">@Model.ArticlePars[0]</h1>
-    <img src="img/placeholder.jpg" alt="article_image"> @*@Model.ArticlePars[1]*@
+    <div id="header_line">
+        <img id="placeholder" class="star" src="/icons/empty_star.png" alt="Add to favourite">
+        <h1 id="article_header">@Model.ArticlePars[0]</h1>
+        <img id="empty_star" class="star" src="/icons/empty_star.png" style="display: flex" alt="Add to favourite" onclick="emptyStarOnClick(@Model.ArticlePars[5])">
+        <img id="filled_star" class="star" src="/icons/filled_star.png" style="display: none" alt="Add to favourite" onclick="filledStarOnClick(@Model.ArticlePars[5])">
+    </div>
+    @* <h1 name="article_title">@Model.ArticlePars[0]</h1> *@
+    <img src="/img/placeholder.jpg" alt="article_image"> @*@Model.ArticlePars[1]*@
     <p></p>
 </div>
-<form class="form-group registration_form" method="post">
-    <button class="btn btn-success registration_child" type="submit" asp-page-handler="Add">Добавить</button>
+<form method="post">
+    <button asp-page-handler="Add" type="submit"></button>
 </form>
