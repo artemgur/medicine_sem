@@ -18,10 +18,5 @@ namespace Sem.Pages
 		{
 			_logger = logger;
 		}
-
-		private void OnGet()
-        {
-
-		}
 	}
 }

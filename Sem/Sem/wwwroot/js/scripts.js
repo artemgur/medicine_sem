@@ -60,17 +60,104 @@ function sendMessage(message)
     }
 }
 
-function emptyStarOnClick(artivleId) {
-    alert('/Article/' + artivleId);
-    $.post('https://localhost:44374/Article/' + artivleId, { handler: 'Add', id: artivleId }, function () {
-        $("#empty_star").css("display", "none");
-        $("#filled_star").css("display", "flex");
+function StarOnClick(articleId, empty, filled, post) {
+    $.ajax({
+        type: "POST",
+        url: "/Article/" + articleId + "?handler=" + post,
+        beforeSend: XHRCheck,
+        data: { articleId: articleId },
+        success: function () {
+            $("#empty_star").css("display", empty);
+            $("#filled_star").css("display", filled);
+        },
+        failure: function (response) {
+            alert(response);
+        }
     });
 }
 
-function filledStarOnClick(artivleId) {
-    $.post('https://localhost:44374/Article/' + artivleId, { handler: 'Remove', id: artivleId }, function () {
-        $("#empty_star").css("display", "flex");
-        $("#filled_star").css("display", "none")
+function Redirect(url) {
+    $.ajax({
+        type: "GET",
+        url: url,
+        beforeSend: XHRCheck,
+        dataType: 'html',
+        success: function RedirectPage(data) {
+            $('html').html(data);
+            window.history.pushState("object or string", "Title", url);
+        }
+    })
+}
+
+function RedirectToIndexArticle(url, index) {
+    $.ajax({
+        type: "GET",
+        url: url,
+        data: { articleId: index },
+        beforeSend: XHRCheck,
+        dataType: 'html',
+        success: function RedirectPage(data) {
+            $('html').html(data);
+            window.history.pushState("object or string", "Title", url + "/" + index);
+        }
+    });
+}
+
+function RedirectToIndexForum(url, index) {
+    $.ajax({
+        type: "GET",
+        url: url,
+        data: { forumId: index },
+        beforeSend: XHRCheck,
+        dataType: 'html',
+        success: function RedirectPage(data) {
+            $('html').html(data);
+            window.history.pushState("object or string", "Title", url + "/" + index);
+        }
+    });
+}
+
+function PostOnClick(url, post) {
+    $.ajax({
+        type: "POST",
+        url: url + "?handler=" + post,
+        data: { login: $('#login').val(), pas: $('#password').val(), repeat_pas: $('#repeat_password').val() },
+        beforeSend: XHRCheck,
+        success: ResultRegister
+    });
+}
+
+function PostSignIn(url, post) {
+    $.ajax({
+        type: "POST",
+        url: url + "?handler=" + post,
+        data: { login: $('#login').val(), pas: $('#password').val() },
+        beforeSend: XHRCheck,
+        success: ResultRegister
+    });
+}
+
+function ResultRegister(result) {
+    if (result != "") {
+        $('#message').html(result);
+        $('#message').show('slow');
+    }
+    else {
+        Redirect('/');
+    }
+}
+
+function XHRCheck(xhr) {
+    xhr.setRequestHeader("XSRF-TOKEN",
+        $('input:hidden[name="__RequestVerificationToken"]').val());
+}
+
+function PostAcccountChange(url, post) {
+    $.ajax({
+        type: "POST",
+        url: url + "?handler=" + post,
+        data: { login: $('#login').val(), old_pas: $('#old_password').val(), new_pas: $('#new_password').val() },
+        beforeSend: XHRCheck,
+        success: ResultRegister
     });
 }

@@ -4,8 +4,8 @@
     @* <div id="sidebar_heading">Start Bootstrap </div> *@
     <div class="list-group list-group-flush">
         <img src="img/placeholder.jpg" alt="account picture placeholder" class="list-group-item list-group-item-action account_sidebar_background">
-        <a href="@Url.Page("./Account")" class="list-group-item list-group-item-action account_sidebar_background">Настройки</a>
-        <a href="@Url.Page("./AccountArticles")" class="list-group-item list-group-item-action account_sidebar_background">Избранные статьи</a>
-        <a href="@Url.Page("./AccountForum")" class="list-group-item list-group-item-action account_sidebar_background">Форум</a>
+        <p onclick="Redirect('@Url.Page("./Account")')" class="loadPage list-group-item list-group-item-action account_sidebar_background">Настройки</p>
+        <p onclick="Redirect('@Url.Page("./AccountArticles")')" class="loadPage list-group-item list-group-item-action account_sidebar_background">Избранные статьи</p>
+        <p onclick="Redirect('@Url.Page("./AccountForum")')" class="loadPage list-group-item list-group-item-action account_sidebar_background">Форум</p>
     </div>
 </div>

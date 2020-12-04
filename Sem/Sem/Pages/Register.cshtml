@@ -5,12 +5,11 @@
     Layout = "Shared/_Layout";
 }
 
-<form class="form-group registration_form" method="post">
-    <div class="@Model.typeMessage" role="alert" hidden="@Model.hiddenBool">
-        @Model.message
+<form class="form-group registration_form">
+    <div id="message" class="alert alert-danger" role="alert" style="display: none;">
     </div>
-    <input class="form-control registration_child" name="login" type="text" placeholder="Логин">
-    <input class="form-control registration_child" name="password" type="password" placeholder="Пароль">
-    <input class="form-control registration_child" name="repeat_password" type="password" placeholder="Повторите пароль"> @*TODO password peek?*@
-    <button class="btn btn-success registration_child" type="submit">Зарегистрироваться</button>
+    <input class="form-control registration_child" id="login" type="text" placeholder="Логин">
+    <input class="form-control registration_child" id="password" type="password" placeholder="Пароль">
+    <input class="form-control registration_child" id="repeat_password" type="password" placeholder="Повторите пароль"> @*TODO password peek?*@
+    <button type="button" class="btn btn-success registration_child" onclick="PostOnClick('@Url.Page("./Register")', 'register')">Зарегистрироваться</button>
 </form>
