@@ -35,7 +35,7 @@ namespace Sem.Pages
 		{
 			OnGet(index);
 			if (CountForumToUser == 0)
-				DataBase.Add("INSERT INTO chats_to_users (user_id, chat_id) VALUES (" + Request.Cookies["user_id"] + ", " + index + "); ");
+				DataBase.Add("INSERT INTO chats_to_users VALUES (" + index + ", " + Request.Cookies["user_id"] + "); ");
 		}
 
 		public void OnPostRemove(int index)

@@ -25,7 +25,7 @@ namespace Sem.Pages
 		{
 			OnGet(index);
 			if (CountArticleToUser == 0)
-				DataBase.Add("INSERT INTO articles_to_users VALUES (" + Request.Cookies["user_id"] + ", " + index + "); ");
+				DataBase.Add("INSERT INTO articles_to_users VALUES (" + index + ", " + Request.Cookies["user_id"] + "); ");
 		}
 
 		public void OnPostRemove(int index)
