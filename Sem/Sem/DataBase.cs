@@ -12,6 +12,11 @@ namespace Sem
 {
     public class DataBase
     {
+        public static string ReplacingChars(string answer)
+        {
+            return answer.Replace("\'", "");
+        }
+
         public static string[] pars = new[] { "login", "password", "repeat password" };
 
         public static byte[] salt = new byte[128/8];
@@ -24,7 +29,6 @@ namespace Sem
             return salt;
         }
 
-        public static List<WebSocket> socketsUsers = new List<WebSocket>();
         private static string connectionString { get; } = @"Server=ec2-18-203-7-163.eu-west-1.compute.amazonaws.com;Port=5432;Database=ddi0ro15so2vti;Username=dxvwtsxookmswf;Password=283aad42c6811a3de82b10865d1c8ed67f2273b17873e46bc96222c1977f6d55;SslMode=Require;Trust Server Certificate=true;";
 
         public static HashSet<T> SelectCheck<T>(string sqlExpression)

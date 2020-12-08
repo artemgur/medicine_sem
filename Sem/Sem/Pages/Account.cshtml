@@ -3,19 +3,18 @@
 @{
     Layout = "Shared/_Layout";
 }
-<div class="account_main_div">
+<div class="account_main_div" id="accountUpdate">
     @await Component.InvokeAsync("AccountSidebar")
 
     <div class="div_no_sidebar_space">
-        <form class="form-group registration_form" method="post">
-            <div class="alert alert-danger" role="alert" hidden="@Model.hiddenBool">
-                You entered an incorrect password!
+        <form class="form-group registration_form">
+            <div id="message" class="alert alert-danger" role="alert" style="display: none;">
             </div>
             <h4 class="registration_child">Изменить логин или пароль</h4>
-            <input class="form-control registration_child" name="login" type="text" placeholder="Новый логин">
-            <input class="form-control registration_child" name="old_password" type="password" placeholder="Пароль">
-            <input class="form-control registration_child" name="new_password" type="password" placeholder="Новый пароль">
-            <button class="btn btn-success registration_child" type="submit" asp-page-handler="change">Изменить</button>
+            <input class="form-control registration_child" id="login" type="text" placeholder="Новый логин">
+            <input class="form-control registration_child" id="old_password" type="password" placeholder="Пароль">
+            <input class="form-control registration_child" id="new_password" type="password" placeholder="Новый пароль">
+            <button type="button" class="btn btn-success registration_child" onclick="PostAcccountChange('@Url.Page("./Account")', 'change')">Изменить</button>
         </form>
         <div class="registration_form">
             <h4 class="registration_child">Изменить изображение профиля</h4>
@@ -29,8 +28,10 @@
                 </div>
             </div>
         </div>
-        <form class="form-group registration_form" method="post">
-            <button class="btn btn-success registration_child" type="submit" asp-page-handler="exit">Выйти</button>
+        <form class="form-group registration_form">
+            <button type="button" class="btn btn-success registration_child" onclick="PostOnClick('@Url.Page("./Account")', 'exit')">
+                Выйти
+            </button>
         </form>
     </div>
 </div>

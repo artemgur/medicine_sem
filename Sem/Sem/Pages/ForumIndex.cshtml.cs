@@ -2,11 +2,5 @@
 
 namespace Sem.Pages
 {
-	public class ForumIndex : PageModel
-	{
-		public void OnGet()
-		{
-			
-		}
-	}
+	public class ForumIndex : PageModel { }
 }

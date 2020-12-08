@@ -5,7 +5,7 @@
     Layout = "Shared/_Layout";
 }
 
-<button class="btn-lg btn-success" id="create_forum_item_button" onclick="openConstructor()">Создать</button>
+<button class="btn-lg btn-success" id="create_forum_item_button" onclick="Redirect('@Url.Page("./Constructor")')">Создать</button>
 <div class="container-fluid">
     <div class="row">
         @foreach (var indexForum in DataBase.Select("SELECT * FROM chats;"))
