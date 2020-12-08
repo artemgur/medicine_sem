@@ -26,19 +26,17 @@ function AddToFavorite(url, index, empty, filled, post) {
     });
 }
 
-function RedirectPage(data) {
-    $('html').html(data);
-    window.location.href = url;
-    //window.history.pushState("object or string", "Title", url);
-}
-
 function Redirect(url) {
     $.ajax({
         type: "GET",
         url: url,
         beforeSend: XHRCheck,
         dataType: 'html',
-        success: RedirectPage
+        success: function RedirectPage(data) {
+            $('html').html(data);
+            window.location.href = url;
+            //window.history.pushState("object or string", "Title", url);
+        }
     })
 }
 
@@ -118,7 +116,7 @@ function sendMessage(url, post, chatId, userId, userName, userImg) {
         if (ws === null) {
             ws = new WebSocket("wss://localhost:44374/wss");
             ws.onopen = function () {
-                SetMessage(userId, chatId, userName, userImg);
+                SetMessage(url, post, userId, chatId, userName, userImg);
             };
             ws.onmessage = function (evt) {
                 GetMessage(evt);
@@ -133,17 +131,27 @@ function sendMessage(url, post, chatId, userId, userName, userImg) {
     }
 }
 
-function SetMessage(userId, chatId, userName, userImg) {
+function SetMessage(url, post, userId, chatId, userName, userImg) {
     let value = $("#chatInput").val();
     if (value !== "" && userId !== "") {
         ws.send(chatId + "&" + userId + "&" + userName + "&" + userImg + "&" + value);
-        PostMessage(url, post, chatId, value);
-        $("#chatInput").val() = "";
+        postMessage(url, post, chatId, value);
+        $("#chatInput").val('');
     }
 }
 
+function postMessage(url, post, chatId, value) {
+    $.ajax({
+        type: "POST",
+        url: url + "?handler=" + post,
+        data: { forumId: chatId, text: value },
+        beforeSend: XHRCheck,
+        success: successAction
+    });
+}
+
 function GetMessage(evt) {
-    let params = evt.data.split('&');
+    let params = decodeURIComponent(evt.data).split('&');
     let lastUserMs = $('.messages_from_user').last();
     let userIdAns = params[0];
 
@@ -181,15 +189,6 @@ function ConcatArray(startIndex, array) {
     return result;
 }
 
-function PostMessage(url, post, chatId, value) {
-    $.ajax({
-        type: "POST",
-        url: url + "?handler=" + post,
-        data: { forumId: chatId, text: value },
-        beforeSend: XHRCheck
-    });
-}
-
 function Search(url, handler) {
     let array = $('.filter-option-inner-inner').first().html();
     $.ajax({
@@ -197,6 +196,17 @@ function Search(url, handler) {
         url: url + "?handler=" + handler,
         data: { array: array, name: $('#search_input').val() },
         beforeSend: XHRCheck,
-        success: RedirectPage
+        success: function RedirectPage(data) {
+            $('html').html(data);
+            window.location.href = url;
+            //window.history.pushState("object or string", "Title", url);
+        }
     });
 }
+
+$(document).ready(function () {
+    $('.custom-file-input').on('change', function () {
+        let fileName = $(this).val().split('\\').pop();
+        $(this).next('.custom-file-label').html(fileName);
+    });
+});

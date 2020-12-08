@@ -1,12 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Sem.Pages
 {
 	public class Account : PageModel
 	{
+		[BindProperty] public IFormFile Image { get; set; }
 
 		public IActionResult OnPostExit()
 		{
@@ -57,6 +64,29 @@ namespace Sem.Pages
 			}
 
 			return Content(message);
+		}
+		public void OnPost()
+		{
+			if (Image != null)
+			{
+				var user_id = Request.Cookies["user_id"];
+				var files = Directory.GetFiles(@"wwwroot\img\", user_id + ".*");
+				foreach (var e in files)
+					System.IO.File.Delete(e);
+				var file = Image;
+				var extension = Path.GetExtension(file.FileName);
+
+				using (var fileStream = System.IO.File.Open(@$"wwwroot\img\{user_id}{extension}", FileMode.Create))
+				{
+					file.CopyTo(fileStream);
+					fileStream.Close();
+				}
+
+				Response.Cookies.Delete("img_user");
+				Response.Cookies.Append("img_user", @$"/img/{user_id}{extension}");
+
+				DataBase.Add("UPDATE users SET img = \'" + @$"/img/{user_id}{extension}" + "\' WHERE user_id = \'" + user_id + "\';");
+			}
 		}
 	}
 }

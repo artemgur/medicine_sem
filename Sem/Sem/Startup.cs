@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
+using System.Web;
 
 namespace Sem
 {
@@ -115,7 +116,8 @@ namespace Sem
 
                     forumId = message.Substring(0, indexPars);
 
-                    var answer = message.Substring(indexPars + 1, length - indexPars - 1);
+                    var answer = message.Substring(indexPars + 1, message.Length - indexPars - 1);
+                    var result = HttpUtility.UrlEncode(answer);
 
                     if (!usersWS.ContainsKey(forumId))
                         usersWS[forumId] = new HashSet<WebSocket>();
@@ -123,7 +125,7 @@ namespace Sem
                         usersWS[forumId].Add(webSocket);
 
                     foreach (var e in usersWS.FirstOrDefault(x => x.Key == forumId).Value)
-                        await SendMessage(e, answer);
+                        await SendMessage(e, result);
                 }
             }
             cts.Cancel();

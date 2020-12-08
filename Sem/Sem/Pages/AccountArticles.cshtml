@@ -5,7 +5,7 @@
 }
 
 <div class="account_main_div" id="accountUpdate">
-    @await Component.InvokeAsync("AccountSidebar")
+    @await Component.InvokeAsync("AccountSidebar", Request.Cookies["img_user"])
 
     <div class="div_no_sidebar_space">
         <div class="container-fluid">
