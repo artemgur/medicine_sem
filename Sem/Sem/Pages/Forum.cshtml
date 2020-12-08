@@ -82,7 +82,7 @@
                 <div class="publisher" hidden="@(Request.Cookies["user_id"] == null)">
                     <form class="chat-form">
                         <input id="chatInput" type="text" placeholder="Type a message..." autocomplete="off">
-                        <button onclick="sendMessage('@Url.Page("./Forum")', 'insert', '@Model.ChatPars[2]', '@Request.Cookies["user_id"]', '@Request.Cookies["login"]', '@Request.Cookies["img"]')" id="send-btn" class="btn btn-secondary" type="button">Отправить</button>
+                        <button onclick="sendMessage('@Url.Page("./Forum")', 'insert', '@Model.ChatPars[2]', '@Request.Cookies["user_id"]', '@Request.Cookies["login"]', '@Request.Cookies["img_user"]')" id="send-btn" class="btn btn-secondary" type="button">Отправить</button>
                     </form>
                 </div>
             </div>

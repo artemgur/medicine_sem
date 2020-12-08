@@ -126,7 +126,7 @@ function sendMessage(url, post, chatId, userId, userName, userImg) {
             };
         }
         else {
-            SetMessage(userId, chatId, userName, userImg);
+            SetMessage(url, post, userId, chatId, userName, userImg);
         }
     }
 }
@@ -145,8 +145,7 @@ function postMessage(url, post, chatId, value) {
         type: "POST",
         url: url + "?handler=" + post,
         data: { forumId: chatId, text: value },
-        beforeSend: XHRCheck,
-        success: successAction
+        beforeSend: XHRCheck
     });
 }
 
@@ -176,8 +175,6 @@ function GetMessage(evt) {
     }
     $('#chat-red').animate({ scrollTop: $('#chat-red').prop('scrollHeight') }, 300);
 }
-
-$('#chat-red').animate({ scrollTop: $('#chat-red').prop('scrollHeight') }, 300);
 
 function ConcatArray(startIndex, array) {
     let result = "";
