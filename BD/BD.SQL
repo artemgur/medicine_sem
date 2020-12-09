@@ -27,10 +27,10 @@ CREATE SEQUENCE tb_tags_id_seq
 CREATE TABLE articles
 (
     title character varying(30),
-    image text,
+    image text DEFAULT '/img/placeholder.jpg',
     description text,
     short_description text,
-    create_date date,
+    create_date date DEFAULT CURRENT_DATE,
     article_id integer DEFAULT nextval('tb_articles_id_seq') NOT NULL,
     PRIMARY KEY (article_id)
 );

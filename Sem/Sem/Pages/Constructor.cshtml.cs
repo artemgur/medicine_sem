@@ -8,11 +8,11 @@ namespace Sem.Pages
 		public IActionResult OnPostCreate(string name, string description)
 		{
 			var message = "";
-			var select = DataBase.Select("SELECT * FROM chats WHERE name = \'" + name + "\';");
-			if (name != null && description != null && select.Count == 0)
+			if (name != null && description != null && DB_Operations.ChatsOps.CountForName(name) == 0)
             {
-				DataBase.Add("INSERT INTO chats (name, short_description) VALUES (\'" + name + "\', \'" + description +"\');");
-            }
+				DB_Operations.ChatsOps.AddChat(name, description);
+
+			}
 			else
             {
 				message = "This chat already exists!";

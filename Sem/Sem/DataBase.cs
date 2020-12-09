@@ -7,11 +7,37 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Npgsql;
+using Sem.ModelsTables;
 
 namespace Sem
 {
     public class DataBase
     {
+        public static List<Article> SearchFromTags(string name, string array)
+        {
+            var answer = new StringBuilder();
+            if (name != null)
+            {
+                answer.Append(" AND ");
+                answer.Append("title LIKE \'%");
+                answer.Append(name);
+                answer.Append("%\'");
+            }
+            if (array != "Теги" && array != null)
+            {
+                var arr = array.Split(", ");
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    answer.Append(" AND ");
+                    answer.Append("tag = \'");
+                    answer.Append(arr[i].ToString());
+                    answer.Append("\'");
+                }
+
+            }
+            return Sem.DB_Operations.ArticleOps.GetSearchArticles(answer.ToString());
+
+        }
         public static string ReplacingChars(string answer)
         {
             return answer.Replace("\'", "");

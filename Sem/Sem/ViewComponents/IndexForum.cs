@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Sem.ModelsTables;
 
 namespace Sem
 {
@@ -11,7 +12,7 @@ namespace Sem
 			
 		}
 		
-		public async Task<IViewComponentResult> InvokeAsync(List<object> forumIndex)
+		public async Task<IViewComponentResult> InvokeAsync(Chat forumIndex)
 		{
 			return View("IndexForumView", forumIndex);
 		}
