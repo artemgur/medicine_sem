@@ -10,62 +10,12 @@ function openConstructor(){
     document.location.href = "Constructor"
 }
 
-function sendMessage(message)
-{
-    if ("WebSocket" in window) {
-        if (ws === null)
-        {
-            ws = new WebSocket("ws://localhost:44374");
-            ws.onopen = function () {
-                if (message == 'reg')
-                {
-                    log = document.getElementById("txtLog").value;
-                    ws.send(document.getElementById("txtLog").value + '#' + document.getElementById("txtPas").value);
-                }
-                else
-                    ws.send(document.getElementById("messageText").value);
-            };
-            ws.onmessage = function (evt) {
-                var a = evt.data.split('%');
-                if (a.length > 1)
-                {
-                    let div = document.createElement('div');
-                    div.className = 'user';
-                    div.append(a[1]);
-                    document.getElementById("messageText").before(div);
-                    document.getElementById("regitrationBlock").replaceWith('');
-                }
-                else
-                {
-                    let div = document.createElement('div');
-                    div.className = 'message';
-                    div.append(evt.data);
-                    document.getElementById("messageText").before(div);
-                }
-            };
-            ws.onclose = function () {
-                ws = null;
-            };
-        }
-        else 
-        {
-            if (message == 'reg')
-            {
-                log = document.getElementById("txtLog").value;
-                ws.send(document.getElementById("txtLog").value + '#' + document.getElementById("txtPas").value);
-            }
-            else
-                ws.send(document.getElementById("messageText").value);
-        }
-    }
-}
-
-function StarOnClick(articleId, empty, filled, post) {
+function AddToFavorite(url, index, empty, filled, post) {
     $.ajax({
         type: "POST",
-        url: "/Article/" + articleId + "?handler=" + post,
+        url: url + "/" + index + "?handler=" + post,
         beforeSend: XHRCheck,
-        data: { articleId: articleId },
+        data: { index: index },
         success: function () {
             $("#empty_star").css("display", empty);
             $("#filled_star").css("display", filled);
@@ -84,35 +34,23 @@ function Redirect(url) {
         dataType: 'html',
         success: function RedirectPage(data) {
             $('html').html(data);
-            window.history.pushState("object or string", "Title", url);
+            window.location.href = url;
+            //window.history.pushState("object or string", "Title", url);
         }
     })
 }
 
-function RedirectToIndexArticle(url, index) {
+function RedirectToIndex(url, index) {
     $.ajax({
         type: "GET",
-        url: url,
-        data: { articleId: index },
+        url: url + "/" + index,
+        data: { index: index },
         beforeSend: XHRCheck,
         dataType: 'html',
         success: function RedirectPage(data) {
             $('html').html(data);
-            window.history.pushState("object or string", "Title", url + "/" + index);
-        }
-    });
-}
-
-function RedirectToIndexForum(url, index) {
-    $.ajax({
-        type: "GET",
-        url: url,
-        data: { forumId: index },
-        beforeSend: XHRCheck,
-        dataType: 'html',
-        success: function RedirectPage(data) {
-            $('html').html(data);
-            window.history.pushState("object or string", "Title", url + "/" + index);
+            window.location.href = url + "/" + index;
+            //window.history.pushState("object or string", "Title", url + "/" + index);
         }
     });
 }
@@ -123,7 +61,7 @@ function PostOnClick(url, post) {
         url: url + "?handler=" + post,
         data: { login: $('#login').val(), pas: $('#password').val(), repeat_pas: $('#repeat_password').val() },
         beforeSend: XHRCheck,
-        success: ResultRegister
+        success: successAction
     });
 }
 
@@ -133,11 +71,21 @@ function PostSignIn(url, post) {
         url: url + "?handler=" + post,
         data: { login: $('#login').val(), pas: $('#password').val() },
         beforeSend: XHRCheck,
-        success: ResultRegister
+        success: successAction
     });
 }
 
-function ResultRegister(result) {
+function PostAcccountChange(url, post) {
+    $.ajax({
+        type: "POST",
+        url: url + "?handler=" + post,
+        data: { login: $('#login').val(), old_pas: $('#old_password').val(), new_pas: $('#new_password').val() },
+        beforeSend: XHRCheck,
+        success: successAction
+    });
+}
+
+function successAction(result) {
     if (result != "") {
         $('#message').html(result);
         $('#message').show('slow');
@@ -152,12 +100,105 @@ function XHRCheck(xhr) {
         $('input:hidden[name="__RequestVerificationToken"]').val());
 }
 
-function PostAcccountChange(url, post) {
+function PostCreateForum(url, post) {
     $.ajax({
         type: "POST",
         url: url + "?handler=" + post,
-        data: { login: $('#login').val(), old_pas: $('#old_password').val(), new_pas: $('#new_password').val() },
+        data: { name: $('#name').val(), description: $('#description').val() },
         beforeSend: XHRCheck,
-        success: ResultRegister
+        success: successAction
     });
 }
+
+let ws = null;
+function sendMessage(url, post, chatId, userId, userName, userImg) {
+    if ("WebSocket" in window) {
+        if (ws === null) {
+            ws = new WebSocket("wss://localhost:44374/wss");
+            ws.onopen = function () {
+                SetMessage(url, post, userId, chatId, userName, userImg);
+            };
+            ws.onmessage = function (evt) {
+                GetMessage(evt);
+            };
+            ws.onclose = function () {
+                ws = null;
+            };
+        }
+        else {
+            SetMessage(url, post, userId, chatId, userName, userImg);
+        }
+    }
+}
+
+function SetMessage(url, post, userId, chatId, userName, userImg) {
+    let value = $("#chatInput").val();
+    if (value !== "" && userId !== "") {
+        ws.send(chatId + "&" + userId + "&" + userName + "&" + userImg + "&" + value);
+        postMessage(url, post, chatId, value);
+        $("#chatInput").val('');
+    }
+}
+
+function postMessage(url, post, chatId, value) {
+    $.ajax({
+        type: "POST",
+        url: url + "?handler=" + post,
+        data: { forumId: chatId, text: value },
+        beforeSend: XHRCheck
+    });
+}
+
+function GetMessage(evt) {
+    let params = decodeURIComponent(evt.data).split('&');
+    let lastUserMs = $('.messages_from_user').last();
+    let userIdAns = params[0];
+
+    let divBoxMes = "<div class='message-box'><div class='message'>" +
+        ConcatArray(3, params) +
+        "</div></div>";
+    if (lastUserMs.attr('id') === userIdAns) {
+        lastUserMs.children('.message-place').last().children('.message-box').last().after(divBoxMes);
+    }
+    else {
+        let userName = params[1];
+        let userImg = params[2];
+        if (userImg === "")
+            userImg = 'https://img.icons8.com/color/36/000000/administrator-male.png';
+        divBoxMes = '<div class="messages_from_user" id="' + userIdAns + '">' +
+            '<div class="login">' + userName + '</div>' +
+            '<img class="message-img" src="' + userImg + '" alt="">' +
+            '<div class="message-place" >' +
+            divBoxMes +
+            '</div></div>';
+        lastUserMs.after(divBoxMes);
+    }
+    $('#chat-red').animate({ scrollTop: $('#chat-red').prop('scrollHeight') }, 300);
+}
+
+function ConcatArray(startIndex, array) {
+    let result = "";
+
+    for (let i = startIndex; i < array.length; i++) {
+        result += array[i];
+    }
+
+    return result;
+}
+
+function Search(url, handler) {
+    let array = $('.filter-option-inner-inner').first().html();
+    $.ajax({
+        type: "POST",
+        url: url + "?handler=" + handler,
+        data: { array: array, name: $('#search_input').val() },
+        beforeSend: XHRCheck
+    });
+}
+
+$(document).ready(function () {
+    $('.custom-file-input').on('change', function () {
+        let fileName = $(this).val().split('\\').pop();
+        $(this).next('.custom-file-label').html(fileName);
+    });
+});

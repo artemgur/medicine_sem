@@ -1,16 +1,17 @@
 ﻿@page
+@using Sem.DB_Operations
 
 @{
     Layout = "Shared/_Layout";
 }
 
 <div class="account_main_div" id="accountUpdate">
-    @await Component.InvokeAsync("AccountSidebar")
+    @await Component.InvokeAsync("AccountSidebar", Request.Cookies["img_user"])
 
     <div class="div_no_sidebar_space">
         <div class="container-fluid">
             <div class="row">
-                @foreach (var chat in DataBase.Select("SELECT chats.* FROM chats_to_users, chats WHERE user_id = " + Request.Cookies["user_id"] + " AND chats_to_users.chat_id = chats.chat_id;"))
+                @foreach (var chat in ForumOps.GetAccountChats(Request))
                 {
                     @await Component.InvokeAsync("IndexForum", chat)
                 }

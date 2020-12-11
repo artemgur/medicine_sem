@@ -6,7 +6,9 @@
 }
 
 <form class="form-group registration_form">
-    <input class="form-control registration_child" name="name" type="text" placeholder="Логин">
-    <textarea class="form-control registration_child"@* rows="3"*@ placeholder="Текст"></textarea>
-    <button class="btn btn-success registration_child" type="submit">Создать</button>
+    <div id="message" class="alert alert-danger" role="alert" style="display: none;">
+    </div>
+    <input class="form-control registration_child" id="name" type="text" placeholder="Название">
+    <textarea class="form-control registration_child" id="description" rows="3" placeholder="Описание"></textarea>
+    <button type="button" class="btn btn-success registration_child" onclick="PostCreateForum('@Url.Page("./Constructor")', 'create')">Создать</button>
 </form>

@@ -10,9 +10,9 @@ namespace Sem
 			
 		}
 		
-		public async Task<IViewComponentResult> InvokeAsync()
+		public async Task<IViewComponentResult> InvokeAsync(object img)
 		{
-			return View("AccountSidebarView");
+			return View("AccountSidebarView", img);
 		}
 	}
 }

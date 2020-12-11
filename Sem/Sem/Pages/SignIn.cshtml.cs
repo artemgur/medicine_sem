@@ -15,18 +15,18 @@ namespace Sem.Pages
 		public IActionResult OnPostSign(string login, string pas)
 		{
 			var message = "You entered an incorrect password or username!";
-			var select = DataBase.Select("SELECT password, salt, user_id FROM users WHERE login = \'" + login + "\';");
-			if (select.Count != 0)
+			var user = DB_Operations.UserOps.GetUser(login);
+			if (user.User_id != -1)
 			{
-				var hash = DataBase.GenerateHash(pas, Encoding.Unicode.GetBytes(select[0][1].ToString()));
-				if (select[0][0].ToString() == hash)
+				var hash = DataBase.GenerateHash(pas, Encoding.Unicode.GetBytes(user.Salt.ToString()));
+				if (user.Password == hash)
 				{
 					Response.Cookies.Delete("login");
 					Response.Cookies.Delete("password");
 					Response.Cookies.Delete("user_id");
 					Response.Cookies.Append("login", login);
 					Response.Cookies.Append("password", hash);
-					Response.Cookies.Append("user_id", select[0][2].ToString());
+					Response.Cookies.Append("user_id", user.User_id.ToString());
 					userView = true;
 					message = "";
 				}

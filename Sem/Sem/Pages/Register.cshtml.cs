@@ -36,18 +36,17 @@ namespace Sem.Pages
 			}
 			else
 			{
-				var selectLogin = DataBase.SelectCheck<string>("SELECT login FROM users WHERE login = \'" + login + "\';");
-				if (selectLogin.Count == 0)
+				var user = DB_Operations.UserOps.GetUser(login);
+				if (user.User_id == -1)
 				{
-					DataBase.Add("INSERT INTO users (login, salt, password) VALUES" +
-					"(\'" + login + "\', \'" + Encoding.Unicode.GetString(DataBase.RandomSalt()) + "\', \'" + DataBase.GenerateHash(pas, DataBase.salt) + "\');");
+					Sem.DB_Operations.UserOps.Add(login, pas);
 					Response.Cookies.Delete("login");
 					Response.Cookies.Delete("password");
 					Response.Cookies.Delete("user_id");
 					Response.Cookies.Append("login", login);
 					Response.Cookies.Append("password", DataBase.GenerateHash(pas, DataBase.salt));
 					Pages.SignIn.userView = true;
-					Response.Cookies.Append("user_id", DataBase.Select("SELECT user_id FROM users WHERE login = \'" + login + "\';")[0][0].ToString());
+					Response.Cookies.Append("user_id", user.User_id.ToString());
 				}
 				else
 				{

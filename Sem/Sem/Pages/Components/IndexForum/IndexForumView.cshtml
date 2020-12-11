@@ -1,11 +1,11 @@
-﻿@model List<object>
+﻿@model Sem.ModelsTables.Chat
 
 <div class="col-md-4">
-    <a onclick="RedirectToIndexForum('@Url.Page("./Forum")', @Model[2])">
+    <a onclick="RedirectToIndex('@Url.Page("./Forum")',@Model.Chat_id)">
         <div class="card my_card shadow_my">
-            <h4 class="card-title">@Model[0]</h4>
+            <h4 class="card-title">@Model.Name</h4>
             <div class="card-body">
-                @Model[1]
+                @Model.Short_description
             </div>
             @* <button class="btn btn-primary">Открыть</button> *@
         </div>

@@ -1,14 +1,17 @@
-﻿@page "{forumId?}"
+﻿@page "{index?}"
+@model Forum
+
 @{
     Layout = "Shared/_Layout";
 }
 
 <div class="container-fluid">
-
+    <img id="empty_star" class="star" src="/icons/empty_star.png" style="display: @(Request.Cookies["user_id"] == null || Model.CountForumToUser != 0 ? "none" : "flex")" alt="Add to favourite" onclick="AddToFavorite('/Forum', @Model.ChatPars.Chat_id, 'none', 'flex', 'Add')">
+    <img id="filled_star" class="star" src="/icons/filled_star.png" style="display: @(Request.Cookies["user_id"] == null || Model.CountForumToUser == 0 ? "none" : "flex")" alt="Add to favourite" onclick="AddToFavorite('/Forum', @Model.ChatPars.Chat_id, 'flex', 'none', 'Remove')">
     <div class="forum-box">
         <div class="forum">
-            <h2 class="forum-title">Заголовок</h2>
-            <div class="forum_description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero perferendis reprehenderit dolor libero quo itaque repellendus. Voluptas, facere in id tenetur, amet cupiditate voluptates tempora inventore sunt nesciunt consectetur beatae.</div>
+            <h2 class="forum-title">@Model.ChatPars.Name</h2>
+            <div class="forum_description">@Model.ChatPars.Short_description</div>
             @* <div class="col-md-1 offset-md-11 forum-peoples"> *@
             @*     <img class="forum-peoples-svg" src="icons/people.svg" alt=""> *@
             @*     <div class="forum-peoples-count">0</div> *@
@@ -21,6 +24,7 @@
                         <div id="chat-red" class="chat-container">
 
                             <div class="messages_from_user" id="-1">
+                                <div class="login">Мик Гордон</div>
                                 <img class="message-img" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="">
                                 <div class="message-place">
                                     <div class="message-box">
@@ -31,14 +35,54 @@
                                     </div>
                                 </div>
                             </div>
+                            @if (Model.messages.FirstOrDefault() != null)
+                            {
+                                var userMess = new List<string>();
+                                var userId = Model.messages.FirstOrDefault().User_id;
+                                var user = Sem.DB_Operations.UserOps.GetUser(userId);
+                                @foreach (var element in Model.messages)
+                                {
+                                    if (userId != element.User_id)
+                                    {
+                                        <div class="messages_from_user" id="@userId">
+                                            <div class="login">@user.Login</div>
+                                            <img class="message-img" src="@user.Img" alt="">
+                                            <div class="message-place">
+                                                @foreach (var message in userMess)
+                                                {
+                                                    <div class="message-box">
+                                                        <div class="message">@message</div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                        userId = element.User_id;
+                                        user = Sem.DB_Operations.UserOps.GetUser(userId);
+                                    }
+                                    else
+                                        userMess.Add(element.Text);
+                                }
+                                user = Sem.DB_Operations.UserOps.GetUser(userId);
+                                <div class="messages_from_user" id="@userId">
+                                    <div class="login">@user.Login</div>
+                                    <img class="message-img" src="@user.Img" alt="">
+                                    <div class="message-place">
+                                        @foreach (var message in userMess)
+                                        {
+                                            <div class="message-box">
+                                                <div class="message">@message</div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
                         </div>
                     </div>
-                    
                 </div>
-                <div class="publisher">
-                    <form class="chat-form" action="" onsubmit="return false;">
+                <div class="publisher" hidden="@(Request.Cookies["user_id"] == null)">
+                    <form class="chat-form">
                         <input id="chatInput" type="text" placeholder="Type a message..." autocomplete="off">
-                        <button @*onclick="chatSendMessage()"*@ id="send-btn" class="btn btn-secondary" type="submit">Отправить</button>
+                        <button onclick="sendMessage('@Url.Page("./Forum")', 'insert', '@Model.ChatPars.Chat_id', '@Request.Cookies["user_id"]', '@Request.Cookies["login"]', '@Request.Cookies["img_user"]')" id="send-btn" class="btn btn-secondary" type="button">Отправить</button>
                     </form>
                 </div>
             </div>

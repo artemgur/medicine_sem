@@ -4,7 +4,10 @@
     Layout = "Shared/_Layout";
 }
 <div class="account_main_div" id="accountUpdate">
-    @await Component.InvokeAsync("AccountSidebar")
+    <div class="account_sidebar_background border-right" id="account_sidebar">
+        @* <div id="sidebar_heading">Start Bootstrap </div> *@
+        @await Component.InvokeAsync("AccountSidebar", Request.Cookies["img_user"])
+    </div>
 
     <div class="div_no_sidebar_space">
         <form class="form-group registration_form">
@@ -16,18 +19,21 @@
             <input class="form-control registration_child" id="new_password" type="password" placeholder="Новый пароль">
             <button type="button" class="btn btn-success registration_child" onclick="PostAcccountChange('@Url.Page("./Account")', 'change')">Изменить</button>
         </form>
-        <div class="registration_form">
+        <form class="registration_form" enctype="multipart/form-data" method="post">
             <h4 class="registration_child">Изменить изображение профиля</h4>
             <div class="input-group registration_child">
                 @* <div class="input-group-prepend"> *@
                 @*   <span class="input-group-text" id="inputGroupFileAddon01">Изменить изображение профиля</span> *@
                 @* </div> *@
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input minor_shadow" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                    <input type="file" asp-for="Image" accept=".jpg, .png, .jpeg" class="custom-file-input minor_shadow" id="inputGroupFile01">
                     <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
                 </div>
             </div>
-        </div>
+            <button type="submit" class="btn btn-success registration_child" >
+                Save avatar
+            </button>
+        </form>
         <form class="form-group registration_form">
             <button type="button" class="btn btn-success registration_child" onclick="PostOnClick('@Url.Page("./Account")', 'exit')">
                 Выйти

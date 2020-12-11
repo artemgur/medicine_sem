@@ -25,13 +25,13 @@
             <a class="nav-link color_text float-left" onclick="Redirect('@Url.Page("./Index")')">Статьи</a>
             <a class="nav-link color_text float-left" onclick="Redirect('@Url.Page("./ForumIndex")')">Форум</a>
         </div>
-        <form id="search_form" class="form-inline">
+        <form id="search_form" class="form-inline" method="post">
             <input id="search_input" class="form-control mr-sm-2" type="text" placeholder="Поиск">
-            <button id="search_button" class="btn btn-success" type="submit">Поиск</button>
+            <button id="search_button" class="btn btn-success" type="button" onclick="Search('@Url.Page("./Index")', 'search')">Поиск</button>
             <select id="tags_select" class="selectpicker" multiple data-live-search="true" title="Теги" style="margin-left: 10px">
-                <option>Грипп</option>
+                <option>ГРИПП</option>
                 <option>ОРВИ</option>
-                <option>Коронавирус</option>
+                <option>КОРОНАВИРУС</option>
             </select>
         </form>
         <div id="UserAccount">

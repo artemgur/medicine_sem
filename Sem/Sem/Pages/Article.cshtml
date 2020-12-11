@@ -1,5 +1,5 @@
-﻿@page "{articleId?}"
-@model Article
+﻿@page "{index?}"
+@model Sem.Pages.Article
 
 @{
     Layout = "Shared/_Layout";
@@ -8,11 +8,14 @@
 <div class="article_parent">
     <div id="header_line">
         <img id="placeholder" class="star" src="/icons/empty_star.png" alt="Add to favourite">
-        <h1 id="article_header">@Model.ArticlePars[0]</h1>
-        <img id="empty_star" class="star" src="/icons/empty_star.png" style="display: flex" hidden="@(Request.Cookies["user_id"] == null)" alt="Add to favourite" onclick="StarOnClick(@Model.ArticlePars[5], 'none', 'flex', 'Add')">
-        <img id="filled_star" class="star" src="/icons/filled_star.png" style="display: none" alt="Add to favourite" onclick="StarOnClick(@Model.ArticlePars[5], 'flex', 'none', 'Remove')">
+        <h1 id="article_header">@Model.ArticlePars.Title</h1>
+        <img id="empty_star" class="star" src="/icons/empty_star.png" style="display: @(Request.Cookies["user_id"] == null || Model.CountArticleToUser != 0 ? "none" : "flex")" alt="Add to favourite" onclick="AddToFavorite('/Article', @Model.ArticlePars.Article_id, 'none', 'flex', 'Add')">
+        <img id="filled_star" class="star" src="/icons/filled_star.png" style="display: @(Request.Cookies["user_id"] == null || Model.CountArticleToUser == 0 ? "none" : "flex")" alt="Add to favourite" onclick="AddToFavorite('/Article', @Model.ArticlePars.Article_id, 'flex', 'none', 'Remove')">
     </div>
-    <img src="/img/placeholder.jpg" alt="article_image"> @*@Model.ArticlePars[1]*@
-    <p>@Model.ArticlePars[2]</p>
-    <p></p>
+    <img src="@Model.ArticlePars.Image" alt="article_image">
+    <p>@Model.ArticlePars.Description</p>
+    @foreach (var tag in Model.tags)
+    {
+        <span class="badge @tag.Color">@tag.Name</span>
+    }
 </div>

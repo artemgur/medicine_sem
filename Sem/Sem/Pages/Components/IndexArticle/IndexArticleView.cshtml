@@ -1,14 +1,14 @@
-﻿@model List<object>
+﻿@model Sem.ModelsTables.Article
 
 <div class="col-md-4">
-    <a class="my_a" onclick="RedirectToIndexArticle('@(Url.Page("./Article"))', @Model[5])">
+    <a class="my_a" onclick="RedirectToIndex('@(Url.Page("./Article"))', @Model.Article_id)">
         <div class="card my_card shadow_my">
             <div class="article_image_parent">
                 <img class="card-img-top" src="img/placeholder.jpg" alt="Article Image" />
             </div>
-            <h4 class="card-title">@Model[0].ToString()</h4>
+            <h4 class="card-title">@Model.Title</h4>
             <div class="card-body news_card_body">
-                @Model[3].ToString()
+                @Model.Short_description
             </div>
         </div>
     </a>
