@@ -18,9 +18,9 @@ namespace Sem
             var title = new StringBuilder();
             if (name != null)
             {
-                title.Append("title LIKE \'%");
+                title.Append("LOWER(title) LIKE LOWER(\'%");
                 title.Append(name);
-                title.Append("%\'");
+                title.Append("%\')");
                 title.Append(" AND ");
             }
             var tags = new StringBuilder();
