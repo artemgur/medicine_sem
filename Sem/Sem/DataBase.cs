@@ -15,27 +15,32 @@ namespace Sem
     {
         public static List<Article> SearchFromTags(string name, string array)
         {
-            var answer = new StringBuilder();
+            var title = new StringBuilder();
             if (name != null)
             {
-                answer.Append(" AND ");
-                answer.Append("title LIKE \'%");
-                answer.Append(name);
-                answer.Append("%\'");
+                title.Append("title LIKE \'%");
+                title.Append(name);
+                title.Append("%\'");
+                title.Append(" AND ");
             }
+            var tags = new StringBuilder();
+            var countTags = 0;
             if (array != "Теги" && array != null)
             {
                 var arr = array.Split(", ");
+                countTags = arr.Length;
+                tags.Append(" AND (");
                 for (int i = 0; i < arr.Length; i++)
                 {
-                    answer.Append(" AND ");
-                    answer.Append("tag = \'");
-                    answer.Append(arr[i].ToString());
-                    answer.Append("\'");
+                    tags.Append("tag = \'");
+                    tags.Append(arr[i].ToString());
+                    tags.Append("\'");
+                    tags.Append(" OR ");
                 }
-
+                tags.Remove(tags.Length - 4, 4);
+                tags.Append(")");
             }
-            return Sem.DB_Operations.ArticleOps.GetSearchArticles(answer.ToString());
+            return Sem.DB_Operations.ArticleOps.GetSearchArticles(title.ToString(), tags.ToString(), countTags);
 
         }
         public static string ReplacingChars(string answer)

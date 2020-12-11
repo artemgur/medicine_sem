@@ -23,18 +23,18 @@
                     <div class="chat-container-box">
                         <div id="chat-red" class="chat-container">
 
-                            @* <div class="messages_from_user" id="-1"> *@@*It is just a placehoolder*@
-                            @*     <div class="login">Мик Гордон</div> *@
-                            @*     <img class="message-img" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt=""> *@
-                            @*     <div class="message-place"> *@
-                            @*         <div class="message-box"> *@
-                            @*             <div class="message">Hi</div> *@
-                            @*         </div> *@
-                            @*         <div class="message-box"> *@
-                            @*             <div class="message">How are you ...???</div> *@
-                            @*         </div> *@
-                            @*     </div> *@
-                            @* </div> *@
+                            <div class="messages_from_user" id="-1">
+                                <div class="login">Мик Гордон</div>
+                                <img class="message-img" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="">
+                                <div class="message-place">
+                                    <div class="message-box">
+                                        <div class="message">Hi</div>
+                                    </div>
+                                    <div class="message-box">
+                                        <div class="message">How are you ...???</div>
+                                    </div>
+                                </div>
+                            </div>
                             @if (Model.messages.FirstOrDefault() != null)
                             {
                                 var userMess = new List<string>();
@@ -45,8 +45,8 @@
                                     if (userId != element.User_id)
                                     {
                                         <div class="messages_from_user" id="@userId">
-                                            @* <div class="login">@user.Login</div> *@
-                                            <img class="message-img" src="@user.Img" alt="" title="@user.Login">
+                                            <div class="login">@user.Login</div>
+                                            <img class="message-img" src="@user.Img" alt="">
                                             <div class="message-place">
                                                 @foreach (var message in userMess)
                                                 {
@@ -60,14 +60,12 @@
                                         user = Sem.DB_Operations.UserOps.GetUser(userId);
                                     }
                                     else
-                                    {
                                         userMess.Add(element.Text);
-                                    }
                                 }
                                 user = Sem.DB_Operations.UserOps.GetUser(userId);
                                 <div class="messages_from_user" id="@userId">
-                                    @* <div class="login">@user.Login</div> *@
-                                    <img class="message-img" src="@user.Img" alt="" title="@user.Login">
+                                    <div class="login">@user.Login</div>
+                                    <img class="message-img" src="@user.Img" alt="">
                                     <div class="message-place">
                                         @foreach (var message in userMess)
                                         {

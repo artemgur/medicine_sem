@@ -192,11 +192,7 @@ function Search(url, handler) {
         type: "POST",
         url: url + "?handler=" + handler,
         data: { array: array, name: $('#search_input').val() },
-        beforeSend: XHRCheck,
-        success: function (data) {
-            $('html').html(data);
-            //window.history.pushState("object or string", "Title", url);
-        }
+        beforeSend: XHRCheck
     });
 }
 

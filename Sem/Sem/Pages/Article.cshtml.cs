@@ -8,7 +8,7 @@ namespace Sem.Pages
 	public class Article : PageModel
 	{
 		public ModelsTables.Article ArticlePars;
-		public int CountArticleToUser = -1;
+		public int CountArticleToUser;
 		public List<Tag> tags;
 
 		public void OnGet(int index)

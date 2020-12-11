@@ -16,7 +16,7 @@ namespace Sem.DB_Operations
 
         public static User GetUser(string login)
         {
-            return GetUsers("SELECT * FROM users WHERE login = \'" + login + "\';").FirstOrDefault();
+            return GetUsers("SELECT * FROM users WHERE login = " + login + ";").FirstOrDefault();
         }
 
         public static void Add(string login, string pas)
