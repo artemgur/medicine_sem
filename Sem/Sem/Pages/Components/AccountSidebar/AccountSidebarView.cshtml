@@ -3,7 +3,7 @@
 <div class="account_sidebar_background border-right" id="account_sidebar">
     @* <div id="sidebar_heading">Start Bootstrap </div> *@
     <div class="list-group list-group-flush">
-        <img src="@(Model != null ? Model : "img/placeholder.jpg")" alt="account picture placeholder" class="list-group-item list-group-item-action account_sidebar_background">
+        <img src="@(Model)" alt="account picture placeholder" class="list-group-item list-group-item-action account_sidebar_background">
         <p onclick="Redirect('@Url.Page("./Account")')" class="loadPage list-group-item list-group-item-action account_sidebar_background">Настройки</p>
         <p onclick="Redirect('@Url.Page("./AccountArticles")')" class="loadPage list-group-item list-group-item-action account_sidebar_background">Избранные статьи</p>
         <p onclick="Redirect('@Url.Page("./AccountForum")')" class="loadPage list-group-item list-group-item-action account_sidebar_background">Форум</p>
