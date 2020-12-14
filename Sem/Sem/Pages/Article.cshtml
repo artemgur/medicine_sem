@@ -6,8 +6,8 @@
 }
 
 <div class="article_parent">
-    <div id="header_line">
-        <img id="placeholder" class="star" src="/icons/empty_star.png" alt="Add to favourite">
+    <div id=@(Request.Cookies["user_id"] == null ? "header_line_no_stars" : "header_line")>
+        <img id="placeholder" class="star" src="/icons/empty_star.png" alt="Add to favourite" style="display: @(Request.Cookies["user_id"] == null ? "none" : "flex")">
         <h1 id="article_header">@Model.ArticlePars.Title</h1>
         <img id="empty_star" class="star" src="/icons/empty_star.png" style="display: @(Request.Cookies["user_id"] == null || Model.CountArticleToUser != 0 ? "none" : "flex")" alt="Add to favourite" onclick="AddToFavorite('/Article', @Model.ArticlePars.Article_id, 'none', 'flex', 'Add')">
         <img id="filled_star" class="star" src="/icons/filled_star.png" style="display: @(Request.Cookies["user_id"] == null || Model.CountArticleToUser == 0 ? "none" : "flex")" alt="Add to favourite" onclick="AddToFavorite('/Article', @Model.ArticlePars.Article_id, 'flex', 'none', 'Remove')">
