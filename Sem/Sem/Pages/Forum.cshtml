@@ -47,7 +47,9 @@
                                         user = Sem.DB_Operations.UserOps.GetUser(userId);
                                     }
                                     else
+                                    {
                                         userMess.Add(element.Text);
+                                    }
                                 }
                                 user = Sem.DB_Operations.UserOps.GetUser(userId);
                                 <div class="messages_from_user" id="@userId">
