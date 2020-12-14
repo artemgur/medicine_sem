@@ -1,37 +1,12 @@
 CREATE TYPE disease_b AS ENUM ('ГРИПП', 'ОРВИ', 'КОРОНАВИРУС');
 
-CREATE SEQUENCE tb_articles_id_seq
- INCREMENT BY 1
- NO MAXVALUE
- NO MINVALUE
- CACHE 1;
-
-CREATE SEQUENCE tb_chats_id_seq
- INCREMENT BY 1
- NO MAXVALUE
- NO MINVALUE
- CACHE 1;
-
-CREATE SEQUENCE tb_users_id_seq
- INCREMENT BY 1
- NO MAXVALUE
- NO MINVALUE
- CACHE 1;
-
-CREATE SEQUENCE tb_tags_id_seq
- INCREMENT BY 1
- NO MAXVALUE
- NO MINVALUE
- CACHE 1;
-
 CREATE TABLE articles
 (
     title character varying(30),
     image text DEFAULT '/img/placeholder.jpg',
     description text,
-    short_description text,
     create_date date DEFAULT CURRENT_DATE,
-    article_id integer DEFAULT nextval('tb_articles_id_seq') NOT NULL,
+    article_id SERIAL PRIMARY KEY,
     PRIMARY KEY (article_id)
 );
 
@@ -39,7 +14,7 @@ CREATE TABLE chats
 (
     name character varying(50),
     short_description text,
-    chat_id integer DEFAULT nextval('tb_chats_id_seq') NOT NULL,
+    chat_id SERIAL PRIMARY KEY,
     PRIMARY KEY (chat_id)
 );
 
@@ -54,7 +29,7 @@ CREATE TABLE tags
 (
     tag disease_b,
     color text
-    tag_id integer primary key DEFAULT nextval('tb_tags_id_seq') NOT NULL,
+    tag_id SERIAL PRIMARY KEY,
 );
 
 CREATE TABLE users
@@ -63,7 +38,7 @@ CREATE TABLE users
     password character varying(50),
     salt  character varying(32),
     img text,
-    user_id integer DEFAULT nextval('tb_users_id_seq') NOT NULL,
+    user_id SERIAL PRIMARY KEY,
     PRIMARY KEY (user_id)
 );
 
