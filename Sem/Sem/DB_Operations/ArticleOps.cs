@@ -2,6 +2,7 @@
 using Sem.ModelsTables;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,6 +15,28 @@ namespace Sem.DB_Operations
             return GetArticles("SELECT articles.* FROM articles_to_users, articles WHERE user_id = " +
                 request.Cookies["user_id"] +
                 " AND articles_to_users.article_id = articles.article_id;");
+        }
+        public static void AddArticle(IFormFile image, HttpRequest request, string name, string description)
+        {
+            var article_id = GetAllArticles().Count + 1;
+            var files = Directory.GetFiles(@"wwwroot\img\article\", article_id + ".*");
+            foreach (var e in files)
+                File.Delete(e);
+            var file = image;
+            var extension = Path.GetExtension(file.FileName);
+
+            using (var fileStream = File.Open(@$"wwwroot\img\article\{article_id}{extension}", FileMode.Create))
+            {
+                file.CopyTo(fileStream);
+                fileStream.Close();
+            }
+
+            DataBase.Add("INSERT INTO articles (image, title, description) VALUES (\'" + @$"/img/article/{article_id}{extension}" + "\', \'" + name + "\', \'" + description + "\');");
+        }
+
+        public static void SetArticleImage(string article_id)
+        {
+            
         }
 
         public static Article GetArticle(int index)

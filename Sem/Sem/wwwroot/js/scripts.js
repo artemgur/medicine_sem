@@ -34,8 +34,8 @@ function Redirect(url) {
         dataType: 'html',
         success: function RedirectPage(data) {
             $('html').html(data);
-            window.location.href = url;
-            //window.history.pushState("object or string", "Title", url);
+            //window.location.href = url;
+            window.history.pushState("object or string", "Title", url);
         }
     })
 }
