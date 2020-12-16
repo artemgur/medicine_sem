@@ -26,6 +26,7 @@ function Redirect(url) {
             window.history.pushState("object or string", "Title", url);
         }
     })
+    //document.location = url //If all else fails, uncomment and it will work
 }
 
 function RedirectToIndex(url, index) {
