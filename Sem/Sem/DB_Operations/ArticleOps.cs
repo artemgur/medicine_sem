@@ -28,7 +28,7 @@ namespace Sem.DB_Operations
 
         public static List<Article> GetSearchArticles(string title, string tags, int countTags)
         {
-            return GetArticles("SELECT DISTINCT(articles.*) FROM articles WHERE " + title + "(SELECT COUNT(DISTINCT(tags.*)) FROM tags_to_articles, tags WHERE tags_to_articles.tag_id = tags.tag_id AND tags_to_articles.article_id = articles.article_id" + tags + ") > " + (countTags - 1) + ";");
+            return GetArticles("SELECT DISTINCT(articles.*) FROM articles WHERE " + title + "(SELECT COUNT(DISTINCT(tags.*)) FROM tags_to_articles, tags WHERE tags_to_articles.tag = tags.tag AND tags_to_articles.article_id = articles.article_id" + tags + ") > " + (countTags - 1) + ";");
         }
 
         private static List<Article> GetArticles(string command)
