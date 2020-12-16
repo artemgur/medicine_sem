@@ -21,7 +21,7 @@
                 <div class="chat">
 
                     <div class="chat-container-box">
-                        <div id="chat-red" class="chat-container">
+                        <div id="forum_send" class="chat-container">
                             @if (Model.messages.FirstOrDefault() != null)
                             {
                                 var userMess = new List<string>();
@@ -32,8 +32,8 @@
                                     if (userId != element.User_id)
                                     {
                                         <div class="messages_from_user" id="@userId">
-                                            <div class="login">@user.Login</div>
-                                            <img class="message-img" src="@user.Img" alt="">
+                                            @* <div class="login" style="display: none">@user.Login</div> *@
+                                            <img class="message-img" src="@user.Img" alt="" title="@user.Login">
                                             <div class="message-place">
                                                 @foreach (var message in userMess)
                                                 {
@@ -53,8 +53,8 @@
                                 }
                                 user = Sem.DB_Operations.UserOps.GetUser(userId);
                                 <div class="messages_from_user" id="@userId">
-                                    <div class="login">@user.Login</div>
-                                    <img class="message-img" src="@user.Img" alt="">
+                                    @* <div class="login" style="display: none">@user.Login</div> *@
+                                    <img class="message-img" src="@user.Img" alt="" title="@user.Login">
                                     <div class="message-place">
                                         @foreach (var message in userMess)
                                         {

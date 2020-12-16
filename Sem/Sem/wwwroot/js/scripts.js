@@ -166,14 +166,14 @@ function GetMessage(evt) {
         if (userImg === "")
             userImg = 'https://img.icons8.com/color/36/000000/administrator-male.png';
         divBoxMes = '<div class="messages_from_user" id="' + userIdAns + '">' +
-            '<div class="login">' + userName + '</div>' +
-            '<img class="message-img" src="' + userImg + '" alt="">' +
+            //'<div class="login">' + userName + '</div>' +
+            '<img class="message-img" src="' + userImg + '" alt="" title="'+ userName + '">' +
             '<div class="message-place" >' +
             divBoxMes +
             '</div></div>';
         lastUserMs.after(divBoxMes);
     }
-    $('#chat-red').animate({ scrollTop: $('#chat-red').prop('scrollHeight') }, 300);
+    $('#forum_send').animate({ scrollTop: $('#forum_send').prop('scrollHeight') }, 300);
 }
 
 function ConcatArray(startIndex, array) {
