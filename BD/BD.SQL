@@ -27,8 +27,7 @@ CREATE TABLE messages
 
 CREATE TABLE tags
 (
-    tag disease_b,
-    tag_id SERIAL PRIMARY KEY,
+    tag disease_b
 );
 
 CREATE TABLE users
@@ -57,9 +56,9 @@ create table chats_to_users
 
 create table tags_to_articles
 (
-	tag_id int references tags (tag_id),
+	tag disease_b references tags (tag),
 	article_id int references articles (article_id),
-	primary key(tag_id, article_id)
+	primary key(tag, article_id)
 );
 
 ALTER TABLE messages ADD CONSTRAINT fk_message_id FOREIGN KEY (chat_id)

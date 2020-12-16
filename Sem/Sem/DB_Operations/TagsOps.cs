@@ -11,7 +11,7 @@ namespace Sem.DB_Operations
     {
         public static List<Tag> GetArticleTags(int index)
         {
-            return GetTags("SELECT DISTINCT(tags.*) FROM tags_to_articles, tags WHERE tags.tag_id = tags_to_articles.tag_id AND article_id = " + 
+            return GetTags("SELECT DISTINCT(tags.*) FROM tags_to_articles, tags WHERE tags.tag = tags_to_articles.tag AND article_id = " + 
                 index + ";");
         }
 
