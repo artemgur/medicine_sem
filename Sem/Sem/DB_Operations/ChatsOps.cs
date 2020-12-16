@@ -13,8 +13,9 @@ namespace Sem.DB_Operations
             return GetChats("SELECT * FROM chats WHERE name = \'" + name + "\';").Count;
         }
 
-        public static void AddChat(string name, string description)
+        public static int AddChat(string name, string description)
         {
+            var id = GetAllChats().Count + 1;
             try
             {
                 DataBase.Add("INSERT INTO chats (name, short_description) VALUES (\'" + name + "\', \'" + description + "\');");
@@ -23,6 +24,7 @@ namespace Sem.DB_Operations
             {
                 throw new Exception("Invalid data entered!");
             }
+            return id;
         }
 
         public static Chat GetChat(int index)

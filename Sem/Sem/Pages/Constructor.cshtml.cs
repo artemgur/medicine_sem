@@ -10,8 +10,7 @@ namespace Sem.Pages
 			var message = "";
 			if (name != null && description != null && DB_Operations.ChatsOps.CountForName(name) == 0)
             {
-				DB_Operations.ChatsOps.AddChat(name, description);
-
+				message = DB_Operations.ChatsOps.AddChat(name, description) + "$y";
 			}
 			else
             {

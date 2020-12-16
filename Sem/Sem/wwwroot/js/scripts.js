@@ -94,7 +94,16 @@ function PostCreateForum(url, post) {
         url: url + "?handler=" + post,
         data: { name: $('#name').val(), description: $('#description').val() },
         beforeSend: XHRCheck,
-        success: successAction
+        success: function(result) {
+            var els = result.split('$');
+            if (els.length != 2) {
+                $('#message').html(els[0]);
+                $('#message').show('slow');
+            }
+            else {
+                Redirect('/Forum/' + els[0]);
+            }
+        }
     });
 }
 
@@ -154,12 +163,15 @@ function GetMessage(evt) {
         if (userImg === "")
             userImg = 'https://img.icons8.com/color/36/000000/administrator-male.png';
         divBoxMes = '<div class="messages_from_user" id="' + userIdAns + '">' +
-            //'<div class="login">' + userName + '</div>' +
+            '<div class="login">' + userName + '</div>' +
             '<img class="message-img" src="' + userImg + '" alt="" title="'+ userName + '">' +
             '<div class="message-place" >' +
             divBoxMes +
             '</div></div>';
-        lastUserMs.after(divBoxMes);
+        if (lastUserMs !== null)
+            lastUserMs.after(divBoxMes);
+        else
+            $('#forum_send').append(divBoxMes);
     }
     $('#forum_send').animate({ scrollTop: $('#forum_send').prop('scrollHeight') }, 300);
 }

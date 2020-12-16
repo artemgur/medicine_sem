@@ -12,8 +12,7 @@ namespace Sem.Pages
 		{
 			if (Image != null && title != null && text != null)
             {
-				ArticleOps.AddArticle(Image, Request, title, text);
-				return Redirect("./");
+				return Redirect("./Article/" + ArticleOps.AddArticle(Image, Request, title, text));
 			}
 			else
 				return Redirect("./ArticleConstructor");
