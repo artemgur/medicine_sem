@@ -8,7 +8,7 @@
             </div>
             <h4 class="card-title">@Model.Title</h4>
             <div class="card-body news_card_body">
-                @Model.Description.Substring(0, Math.Min(Model.Description.Length, 200))
+                @Model.Description.Replace("<br>", " ").Substring(0, Math.Min(Model.Description.Length, 200))
                 ...
             </div>
         </div>
