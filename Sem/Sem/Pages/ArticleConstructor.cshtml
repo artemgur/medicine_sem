@@ -1,0 +1,24 @@
+@page
+@model Sem.Pages.ArticleConstructor
+
+@{
+    Layout = "Shared/_Layout";
+}
+
+@* <div class="article_parent"> *@
+<form class="form-group registration_form" enctype="multipart/form-data" method="post">
+    <h1 class="registration_child" id="article_header">Создание статьи</h1>
+    @* <h4 class="registration_child">Изменить изображение профиля</h4> *@
+    @* <div class="input-group registration_child"> *@
+        <input class="form-control registration_child" id="login" type="text" placeholder="Название статьи">
+        <textarea class="form-control registration_child" id="text" type="text" placeholder="Текст статьи"></textarea>
+        <div class="custom-file registration_child">
+            <input type="file" @*asp-for="Image"*@ accept=".jpg, .png, .jpeg" class="custom-file-input minor_shadow" id="inputGroupFile01">
+            <label class="custom-file-label" for="inputGroupFile01">Выберите изображение статьи</label>
+        </div>
+    @* </div> *@
+    <button type="submit" class="btn btn-success registration_child">
+        Создать статью
+    </button>
+</form>
+@* </div> *@

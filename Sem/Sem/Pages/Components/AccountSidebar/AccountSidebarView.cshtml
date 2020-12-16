@@ -4,8 +4,10 @@
     @* <div id="sidebar_heading">Start Bootstrap </div> *@
     <div class="list-group list-group-flush">
         <img src="@(Model != null ? Model : "img/placeholder.jpg")" alt="account picture placeholder" class="list-group-item list-group-item-action account_sidebar_background">
-        <p onclick="Redirect('@Url.Page("./Account")')" class="loadPage list-group-item list-group-item-action account_sidebar_background">Настройки</p>
-        <p onclick="Redirect('@Url.Page("./AccountArticles")')" class="loadPage list-group-item list-group-item-action account_sidebar_background">Избранные статьи</p>
-        <p onclick="Redirect('@Url.Page("./AccountForum")')" class="loadPage list-group-item list-group-item-action account_sidebar_background">Форум</p>
+        <a onclick="Redirect('@Url.Page("./Account")')" class="loadPage list-group-item list-group-item-action account_sidebar_background">Настройки</a>
+        <a onclick="Redirect('@Url.Page("./ArticleConstructor")')" class="loadPage list-group-item list-group-item-action account_sidebar_background">Создать статью</a>
+        <a onclick="Redirect('@Url.Page("./AccountArticles")')" class="loadPage list-group-item list-group-item-action account_sidebar_background">Избранные статьи</a>
+        <a onclick="Redirect('@Url.Page("./AccountForum")')" class="loadPage list-group-item list-group-item-action account_sidebar_background">Форум</a>
+        <a onclick="PostOnClick('@Url.Page("./Account")" class="loadPage list-group-item list-group-item-action account_sidebar_background">Выйти</a>
     </div>
 </div>

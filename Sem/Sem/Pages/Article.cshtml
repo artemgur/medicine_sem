@@ -12,6 +12,7 @@
         <img id="empty_star" class="star" src="/icons/empty_star.png" style="display: @(Request.Cookies["user_id"] == null || Model.CountArticleToUser != 0 ? "none" : "flex")" alt="Add to favourite" onclick="AddToFavorite('/Article', @Model.ArticlePars.Article_id, 'none', 'flex', 'Add')">
         <img id="filled_star" class="star" src="/icons/filled_star.png" style="display: @(Request.Cookies["user_id"] == null || Model.CountArticleToUser == 0 ? "none" : "flex")" alt="Add to favourite" onclick="AddToFavorite('/Article', @Model.ArticlePars.Article_id, 'flex', 'none', 'Remove')">
     </div>
+    <p>Автор: Admin</p>@*TODO*@
     <img src="@Model.ArticlePars.Image" alt="article_image">
     <p>@Model.ArticlePars.Description</p>
     @foreach (var tag in Model.tags)
