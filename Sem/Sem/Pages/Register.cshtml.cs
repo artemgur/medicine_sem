@@ -37,15 +37,16 @@ namespace Sem.Pages
 			else
 			{
 				var user = DB_Operations.UserOps.GetUser(login);
-				if (user.User_id == -1)
+				if (user == null)
 				{
-					Sem.DB_Operations.UserOps.Add(login, pas);
+					DB_Operations.UserOps.Add(login, pas);
 					Response.Cookies.Delete("login");
 					Response.Cookies.Delete("password");
 					Response.Cookies.Delete("user_id");
 					Response.Cookies.Append("login", login);
 					Response.Cookies.Append("password", DataBase.GenerateHash(pas, DataBase.salt));
 					Pages.SignIn.userView = true;
+					user = DB_Operations.UserOps.GetUser(login);
 					Response.Cookies.Append("user_id", user.User_id.ToString());
 				}
 				else

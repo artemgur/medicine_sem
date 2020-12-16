@@ -28,7 +28,6 @@ CREATE TABLE messages
 CREATE TABLE tags
 (
     tag disease_b,
-    color text
     tag_id SERIAL PRIMARY KEY,
 );
 

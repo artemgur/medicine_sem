@@ -23,7 +23,7 @@ namespace Sem.Pages
 
 		}
 
-		public void OnPostSearch(string array, string name)
+		public void OnGetSearch(string array, string name)
 		{
 			Articles = DataBase.SearchFromTags(name, array);
 		}

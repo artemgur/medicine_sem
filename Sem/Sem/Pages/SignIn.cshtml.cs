@@ -16,7 +16,7 @@ namespace Sem.Pages
 		{
 			var message = "You entered an incorrect password or username!";
 			var user = DB_Operations.UserOps.GetUser(login);
-			if (user.User_id != -1)
+			if (user != null)
 			{
 				var hash = DataBase.GenerateHash(pas, Encoding.Unicode.GetBytes(user.Salt.ToString()));
 				if (user.Password == hash)

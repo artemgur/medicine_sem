@@ -189,10 +189,13 @@ function ConcatArray(startIndex, array) {
 function Search(url, handler) {
     let array = $('.filter-option-inner-inner').first().html();
     $.ajax({
-        type: "POST",
+        type: "GET",
         url: url + "?handler=" + handler,
         data: { array: array, name: $('#search_input').val() },
-        beforeSend: XHRCheck
+        beforeSend: XHRCheck,
+        success: function (data) {
+            $('html').html(data);
+        }
     });
 }
 
