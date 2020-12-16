@@ -14,7 +14,7 @@
     </div>
     <p>Автор: Admin</p>@*TODO*@
     <img src="@Model.ArticlePars.Image" alt="article_image">
-    <p>@Model.ArticlePars.Description</p>
+    <p>@Html.Raw(Model.ArticlePars.Description)</p>
     @foreach (var tag in Model.tags)
     {
         <span class="badge btn-primary">@tag.Name</span>
