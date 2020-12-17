@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Sem.Сommunication
+﻿namespace Sem.Сommunication
 {
     public class Tags_to_articles : Communication
     {

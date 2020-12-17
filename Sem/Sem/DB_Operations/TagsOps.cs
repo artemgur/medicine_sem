@@ -1,9 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Sem.ModelsTables;
-using System;
+﻿using Sem.ModelsTables;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Sem.DB_Operations
 {

@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-
-namespace Sem.Сommunication
+﻿namespace Sem.Сommunication
 {
     public class Chats_to_users : Communication
     {
