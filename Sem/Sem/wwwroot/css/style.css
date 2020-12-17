@@ -230,6 +230,23 @@ br {
     display: inline-block;
 }
 
+.constructor_selectpicker{
+    display: block;
+    width: 100%;
+}
+
+.regc1{
+    display: flex;
+}
+.regc1 .bootstrap-select{
+    flex: 1;
+}
+
+.registration_child .bootstrap-select{
+    display: block;
+    width: 100%;
+}
+
 .shadow_my{
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }

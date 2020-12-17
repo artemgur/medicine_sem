@@ -15,7 +15,7 @@ function AddToFavorite(url, index, empty, filled, post) {
 }
 
 function Redirect(url) {
-    // $.ajax({
+    // $.ajax({ //Led to many issues, removed it
     //     type: "GET",
     //     url: url,
     //     beforeSend: XHRCheck,
@@ -26,7 +26,7 @@ function Redirect(url) {
     //         window.history.pushState("object or string", "Title", url);
     //     }
     // })
-    document.location = url //If all else fails, uncomment and it will work
+    document.location = url
 }
 
 function RedirectToIndex(url, index) {
