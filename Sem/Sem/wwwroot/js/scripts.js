@@ -15,18 +15,18 @@ function AddToFavorite(url, index, empty, filled, post) {
 }
 
 function Redirect(url) {
-    $.ajax({
-        type: "GET",
-        url: url,
-        beforeSend: XHRCheck,
-        dataType: 'html',
-        success: function RedirectPage(data) {
-            $('html').html(data);
-            //window.location.href = url;
-            window.history.pushState("object or string", "Title", url);
-        }
-    })
-    //document.location = url //If all else fails, uncomment and it will work
+    // $.ajax({
+    //     type: "GET",
+    //     url: url,
+    //     beforeSend: XHRCheck,
+    //     dataType: 'html',
+    //     success: function RedirectPage(data) {
+    //         $('html').html(data);
+    //         //window.location.href = url;
+    //         window.history.pushState("object or string", "Title", url);
+    //     }
+    // })
+    document.location = url //If all else fails, uncomment and it will work
 }
 
 function RedirectToIndex(url, index) {
