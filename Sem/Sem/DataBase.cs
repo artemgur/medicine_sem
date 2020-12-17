@@ -60,14 +60,14 @@ namespace Sem
             return salt;
         }
 
-        private static string connectionString { get; } = @"Server=ec2-18-203-7-163.eu-west-1.compute.amazonaws.com;Port=5432;Database=ddi0ro15so2vti;Username=dxvwtsxookmswf;Password=283aad42c6811a3de82b10865d1c8ed67f2273b17873e46bc96222c1977f6d55;SslMode=Require;Trust Server Certificate=true;";
+        public static string ConnectionString { get; } = @"Server=ec2-18-203-7-163.eu-west-1.compute.amazonaws.com;Port=5432;Database=ddi0ro15so2vti;Username=dxvwtsxookmswf;Password=283aad42c6811a3de82b10865d1c8ed67f2273b17873e46bc96222c1977f6d55;SslMode=Require;Trust Server Certificate=true;";
 
         public static HashSet<T> SelectCheck<T>(string sqlExpression)
         {
 
             HashSet<T> result = new HashSet<T>();
 
-            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+            using (NpgsqlConnection connection = new NpgsqlConnection(ConnectionString))
             {
                 connection.Open();
                 NpgsqlCommand command = new NpgsqlCommand(sqlExpression, connection);
@@ -95,7 +95,7 @@ namespace Sem
 
             List<List<object>> result = new List<List<object>>();
 
-            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+            using (NpgsqlConnection connection = new NpgsqlConnection(ConnectionString))
             {
                 connection.Open();
                 NpgsqlCommand command = new NpgsqlCommand(sqlExpression, connection);
@@ -121,7 +121,7 @@ namespace Sem
 
         public static bool Add(string sqlExpression)
         {
-            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+            using (NpgsqlConnection connection = new NpgsqlConnection(ConnectionString))
             {
                 connection.Open();
                 NpgsqlCommand command = new NpgsqlCommand(sqlExpression, connection);

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Sem.DB_Operations
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Медицина</title>
@@ -29,9 +30,13 @@
             <input id="search_input" class="form-control mr-sm-2 navbar_search" type="text" placeholder="Поиск">
             <button id="search_button" class="btn btn-success navbar_search" type="button" onclick="Search('@Url.Page("./Index")', 'search')">Поиск</button>
             <select id="tags_select" class="selectpicker navbar_search" multiple data-live-search="true" title="Теги" style="margin-left: 10px">
-                <option>ГРИПП</option>
-                <option>ОРВИ</option>
-                <option>КОРОНАВИРУС</option>
+                @foreach (var tag in await Tags.GetTags())
+                {
+                    <option>@tag</option>
+                }
+                @* <option>ГРИПП</option> *@
+                @* <option>ОРВИ</option> *@
+                @* <option>КОРОНАВИРУС</option> *@
             </select>
         </form>
         <div id="UserAccount">
