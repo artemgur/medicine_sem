@@ -16,7 +16,12 @@ namespace Sem.DB_Operations
         }
         public static int AddArticle(IFormFile image, string name, string description, string user_id)
         {
-            var article_id = GetAllArticles().Max(x => x.Article_id) + 1;
+            var all = GetAllArticles();
+            int article_id;
+            if (all.Count != 0)
+                article_id = all.Count + 1;
+            else
+                article_id = 1;
             var files = Directory.GetFiles(@"wwwroot\img\article\", article_id + ".*");
             foreach (var e in files)
                 File.Delete(e);
@@ -29,7 +34,7 @@ namespace Sem.DB_Operations
                 fileStream.Close();
             }
 
-            DataBase.Add("INSERT INTO articles (image, title, description, user_id) VALUES (\'" + @$"/img/article/{article_id}{extension}" + "\', \'" + name + "\', \'" + description + "\', " + user_id + ");");
+            DataBase.Add("INSERT INTO articles (article_id, image, title, description, user_id) VALUES (" + article_id + ", \'" + @$"/img/article/{article_id}{extension}" + "\', \'" + name + "\', \'" + description + "\', " + user_id + ");");
             return article_id;
         }
 

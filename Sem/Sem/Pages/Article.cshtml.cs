@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Sem.DB_Operations;
 using Sem.ModelsTables;
+using System.Linq;
 
 namespace Sem.Pages
 {
@@ -9,12 +10,12 @@ namespace Sem.Pages
 	{
 		public ModelsTables.Article ArticlePars;
 		public int CountArticleToUser = -1;
-		public List<Tag> tags;
+		public List<string> tags;
 
 		public void OnGet(int index)
 		{
 			ArticlePars = ArticleOps.GetArticle(index);
-			var articleTags = TagsOps.GetArticleTags(index);
+			var articleTags = TagsOps.GetArticleTags(index).Select(x => x.Name).ToList();
 			if (articleTags != null)
 				tags = articleTags;
 			if (Request.Cookies["user_id"] != null)

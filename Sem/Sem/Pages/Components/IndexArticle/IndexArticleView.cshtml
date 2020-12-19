@@ -4,7 +4,7 @@
     <a class="my_a" onclick="RedirectToIndex('@(Url.Page("./Article"))', @Model.Article_id)">
         <div class="card my_card shadow_my">
             <div class="article_image_parent">
-                <img class="card-img-top" src="@(@Model.Image)" alt="Article Image" />
+                <img class="card-img-top" src="@(Model.Image)" alt="Article Image" />
             </div>
             <h4 class="card-title">@Model.Title</h4>
             <div class="card-body news_card_body">

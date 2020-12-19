@@ -30,7 +30,8 @@ function Redirect(url) {
 }
 
 function RedirectToIndex(url, index) {
-    $.ajax({
+    window.location.href = url + "/" + index;
+    /*$.ajax({
         type: "GET",
         url: url + "/" + index,
         data: { index: index },
@@ -41,7 +42,7 @@ function RedirectToIndex(url, index) {
             window.location.href = url + "/" + index;
             //window.history.pushState("object or string", "Title", url + "/" + index);
         }
-    });
+    });*/
 }
 
 function PostOnClick(url, post) {
