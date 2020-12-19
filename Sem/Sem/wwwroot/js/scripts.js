@@ -162,7 +162,7 @@ function GetMessage(evt) {
     else {
         let userName = params[1];
         let userImg = params[2];
-        if (userImg === "")
+        if (userImg == "")
             userImg = 'https://img.icons8.com/color/36/000000/administrator-male.png';
         divBoxMes = '<div class="messages_from_user" id="' + userIdAns + '">' +
             '<div class="login">' + userName + '</div>' +
