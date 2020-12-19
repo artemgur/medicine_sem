@@ -8,11 +8,13 @@ namespace Sem.Pages
 	public class ArticleConstructor : PageModel
 	{
 		[BindProperty] public IFormFile Image { get; set; }
-		public IActionResult OnPost(string title, string text)
+		public IActionResult OnPost(string title, string text, string[] tags)
 		{
 			if (Image != null && title != null && text != null)
             {
-				return Redirect("./Article/" + ArticleOps.AddArticle(Image, Request, title, text));
+				int id = ArticleOps.AddArticle(Image, Request, title, text);
+				TagsOps.AddTagsToArticleIndex(tags, id);
+				return Redirect("./Article/" + id);
 			}
 			else
 				return Redirect("./ArticleConstructor");
