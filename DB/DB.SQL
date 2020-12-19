@@ -6,7 +6,8 @@ CREATE TABLE articles
     image text DEFAULT '/img/placeholder.jpg',
     description text,
     create_date date DEFAULT CURRENT_DATE,
-    article_id SERIAL PRIMARY KEY
+    article_id SERIAL PRIMARY KEY,
+    user_id integer references users (user_id)
 );
 
 CREATE TABLE chats
@@ -22,11 +23,6 @@ CREATE TABLE messages
     user_id integer,
     m_text text
 );
-
---CREATE TABLE tags
---(
---    tag disease_b
---);
 
 CREATE TABLE users
 (
@@ -55,7 +51,6 @@ create table tags_to_articles
 (
 	article_id int references articles (article_id),
 	tag disease_b
-	--primary key(tag, article_id)
 );
 
 ALTER TABLE messages ADD CONSTRAINT fk_message_id FOREIGN KEY (chat_id)

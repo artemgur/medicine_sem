@@ -10,13 +10,13 @@ namespace Sem.DB_Operations
     {
         public static List<Article> GetAccountArticles(HttpRequest request)
         {
-            return GetArticles("SELECT articles.* FROM articles_to_users, articles WHERE user_id = " +
+            return GetArticles("SELECT articles.* FROM articles_to_users, articles WHERE articles_to_users.user_id = " +
                 request.Cookies["user_id"] +
                 " AND articles_to_users.article_id = articles.article_id;");
         }
-        public static int AddArticle(IFormFile image, HttpRequest request, string name, string description)
+        public static int AddArticle(IFormFile image, string name, string description, string user_id)
         {
-            var article_id = GetAllArticles().Count + 1;
+            var article_id = GetAllArticles().Max(x => x.Article_id) + 1;
             var files = Directory.GetFiles(@"wwwroot\img\article\", article_id + ".*");
             foreach (var e in files)
                 File.Delete(e);
@@ -29,13 +29,8 @@ namespace Sem.DB_Operations
                 fileStream.Close();
             }
 
-            DataBase.Add("INSERT INTO articles (image, title, description) VALUES (\'" + @$"/img/article/{article_id}{extension}" + "\', \'" + name + "\', \'" + description + "\');");
+            DataBase.Add("INSERT INTO articles (image, title, description, user_id) VALUES (\'" + @$"/img/article/{article_id}{extension}" + "\', \'" + name + "\', \'" + description + "\', " + user_id + ");");
             return article_id;
-        }
-
-        public static void SetArticleImage(string article_id)
-        {
-            
         }
 
         public static Article GetArticle(int index)

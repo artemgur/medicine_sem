@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sem.DB_Operations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,6 +15,11 @@ namespace Sem.ModelsTables
             var setDate = articleParams[3].ToString().Split(' ', ':', '.').Select(x => int.Parse(x)).ToArray();
             Date = new DateTime(setDate[2], setDate[1], setDate[0]);
             Article_id = int.Parse(articleParams[4].ToString());
+            var id = articleParams[5].ToString();
+            if (id != null && id != "")
+                User_Name = UserOps.GetUser(int.Parse(id)).Login;
+            else
+                User_Name = "Admin";
         }
 
         public string Title { get; private set; }
@@ -25,5 +31,7 @@ namespace Sem.ModelsTables
         public DateTime Date { get; private set; }
 
         public int Article_id { get; private set; }
+
+        public string User_Name { get; private set; }
     }
 }

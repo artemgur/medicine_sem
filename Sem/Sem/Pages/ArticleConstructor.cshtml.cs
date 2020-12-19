@@ -12,7 +12,7 @@ namespace Sem.Pages
 		{
 			if (Image != null && title != null && text != null)
             {
-				int id = ArticleOps.AddArticle(Image, Request, title, text);
+				int id = ArticleOps.AddArticle(Image, title, text, Request.Cookies["user_id"]);
 				TagsOps.AddTagsToArticleIndex(tags, id);
 				return Redirect("./Article/" + id);
 			}
