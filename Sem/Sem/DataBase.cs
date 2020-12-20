@@ -29,7 +29,7 @@ namespace Sem
                 tags.Append(" AND (");
                 for (int i = 0; i < arr.Length; i++)
                 {
-                    tags.Append("tags.tag = \'");
+                    tags.Append("tag = \'");
                     tags.Append(arr[i].ToString());
                     tags.Append("\'");
                     tags.Append(" OR ");
