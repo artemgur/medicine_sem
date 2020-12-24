@@ -6,8 +6,8 @@
 }
 
 <div class="container-fluid">
-    <img id="empty_star" class="star" src="/icons/empty_star.png" style="display: @(Request.Cookies["user_id"] == null || Model.CountForumToUser != 0 ? "none" : "flex")" alt="Add to favourite" onclick="AddToFavorite('/Forum', @Model.ChatPars.Chat_id, 'none', 'flex', 'Add')">
-    <img id="filled_star" class="star" src="/icons/filled_star.png" style="display: @(Request.Cookies["user_id"] == null || Model.CountForumToUser == 0 ? "none" : "flex")" alt="Add to favourite" onclick="AddToFavorite('/Forum', @Model.ChatPars.Chat_id, 'flex', 'none', 'Remove')">
+    <img id="empty_star" class="star" src="/icons/empty_star.png" style="display: @(Request.Cookies != null && Request.Cookies["user_id"] == null || Model.CountForumToUser != 0 ? "none" : "flex")" alt="Add to favourite" onclick="AddToFavorite('/Forum', @Model.ChatPars.Chat_id, 'none', 'flex', 'Add')">
+    <img id="filled_star" class="star" src="/icons/filled_star.png" style="display: @(Request.Cookies != null && Request.Cookies["user_id"] == null || Model.CountForumToUser == 0 ? "none" : "flex")" alt="Add to favourite" onclick="AddToFavorite('/Forum', @Model.ChatPars.Chat_id, 'flex', 'none', 'Remove')">
     <div class="forum-box">
         <div class="forum">
             <h2 class="forum-title">@Model.ChatPars.Name</h2>
@@ -33,7 +33,7 @@
                                     {
                                         <div class="messages_from_user" id="@userId">
                                             @* <div class="login" style="display: none">@user.Login</div> *@
-                                            <img class="message-img" src="@user.Img" alt="" title="@user.Login">
+                                            <img class="message-img" src="@(user.Img != "" ? user.Img : "https://img.icons8.com/color/36/000000/administrator-male.png")" alt="" title="@user.Login">
                                             <div class="message-place">
                                                 @foreach (var message in userMess)
                                                 {

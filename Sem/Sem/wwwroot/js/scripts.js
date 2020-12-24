@@ -154,7 +154,7 @@ function GetMessage(evt) {
     let userIdAns = params[0];
 
     let divBoxMes = "<div class='message-box'><div class='message'>" +
-        ConcatArray(3, params) +
+        ConcatArray(3, params).replace('+', ' ') +
         "</div></div>";
     if (lastUserMs.attr('id') === userIdAns) {
         lastUserMs.children('.message-place').last().children('.message-box').last().after(divBoxMes);
@@ -165,7 +165,6 @@ function GetMessage(evt) {
         if (userImg == "")
             userImg = 'https://img.icons8.com/color/36/000000/administrator-male.png';
         divBoxMes = '<div class="messages_from_user" id="' + userIdAns + '">' +
-            '<div class="login">' + userName + '</div>' +
             '<img class="message-img" src="' + userImg + '" alt="" title="'+ userName + '">' +
             '<div class="message-place" >' +
             divBoxMes +
